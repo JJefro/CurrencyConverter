@@ -9,8 +9,10 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    var contentView = UIView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        configure()
     }
 }

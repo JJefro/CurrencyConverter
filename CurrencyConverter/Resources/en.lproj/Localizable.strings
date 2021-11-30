@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  CurrencyConverter
+
+  Created by Jevgenijs Jefrosinins on 30/11/2021.
+  
+*/
+
+"mainView_navBar_title" = "Currency Converter";
+
+
+"textFields_minOfCharactersRule"    = "Min length 8 characters.";
+"textFields_minOfDigitsRule"        = "Min 1 digit,";
+"textFields_minOfLowercaseCharRule" = "Min 1 lowercase,";
+"textFields_minOfUppercaseCharRule" = "Min 1 capital required.";
+
+"textFields_title_onlyLetters"     = "Only Letters";
+"textFields_title_inputLimit"      = "Input limit";
+"textFields_title_onlyCharacters"  = "Only characters";
+"textFields_title_link"            = "Link";
+"textFields_title_validationRules" = "Validation rules";
+
+"textFields_placeholder_onlyLetters"     = "Type here";
+"textFields_placeholder_inputLimit"      = "Type here";
+"textFields_placeholder_onlyCharacters"  = "wwwww-ddddd";
+"textFields_placeholder_link"            = "www.example.com";
+"textFields_placeholder_validationRules" = "Password";
