@@ -6,8 +6,13 @@
   
 */
 
-"mainView_navBar_title" = "Currency Converter";
+"mainView_navBar_title"                     = "Currency Converter";
+"mainView_updatingExchangeRateButton_title" = "National Bank Exchange Rate";
+"mainView_addCurrencyButton_title"          = "Add Currency";
+"mainView_lastUpdated_label"                = "Last Updated";
 
+"mainView_segmentTitle_sell" = "Sell";
+"mainView_segmentTitle_buy" = "Buy";
 
 "textFields_minOfCharactersRule"    = "Min length 8 characters.";
 "textFields_minOfDigitsRule"        = "Min 1 digit,";
