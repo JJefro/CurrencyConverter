@@ -68,7 +68,7 @@ extension MainViewController {
         view.addSubview(updatingExchangeRateButton)
         updatingExchangeRateButton.snp.makeConstraints { make in
             make.top.greaterThanOrEqualTo(dateOfLastUpdateLabel.snp.bottom).offset(20)
-            make.bottom.equalToSuperview().inset(160).priority(750)
+            make.bottom.equalToSuperview().inset(160).priority(250)
             make.height.equalTo(56)
             make.left.right.equalToSuperview().inset(40)
         }
