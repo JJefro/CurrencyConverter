@@ -19,7 +19,7 @@ class TextFieldView: UIView {
     var contentView: UIView?
     var model = TextFieldModel()
 
-    var fieldSettings: TextFieldsSettings = .onlyLetters {
+    var fieldSettings: TextFieldsSettings = .onlyNumbers {
         didSet {
             makeFieldSettings()
         }
@@ -53,10 +53,23 @@ class TextFieldView: UIView {
 
     private func makeFieldSettings() {
         switch fieldSettings {
+        case .noDigits:
+            txtFieldTitle.text = fieldSettings.title
+            txtField.placeholder = fieldSettings.placeholder
+            txtField.autocorrectionType = .no
+            txtField.keyboardType = .alphabet
+            inputLimitScore.isHidden = true
         case .onlyLetters:
             txtFieldTitle.text = fieldSettings.title
             txtField.placeholder = fieldSettings.placeholder
             txtField.autocorrectionType = .no
+            inputLimitScore.isHidden = true
+        case .onlyNumbers:
+            txtFieldTitle.isHidden = true
+            txtFieldTitle.text = fieldSettings.title
+            txtField.placeholder = fieldSettings.placeholder
+            txtField.autocorrectionType = .no
+            txtField.keyboardType = .numberPad
             inputLimitScore.isHidden = true
         case .inputLimit:
             txtFieldTitle.text = fieldSettings.title

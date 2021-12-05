@@ -12,8 +12,10 @@ class ConverterView: UIView {
 
     var segmentedControl = UISegmentedControl()
     var tableView = UITableView()
-    var addCurrencyButton = UIButton()
-    var shareButton = UIButton()
+    var addCurrencyButton = CardButton()
+    var shareButton = CardButton()
+
+    var dataSource = CurrencyTableViewDatraSource()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +28,7 @@ class ConverterView: UIView {
         layer.shadowColor = R.color.converterView.shadowColor()?.cgColor
 
         configure()
+        bind()
     }
 
     required init?(coder: NSCoder) {
@@ -37,6 +40,11 @@ class ConverterView: UIView {
         configureAddCurrencyButton()
         configureTableView()
         configureShareButton()
+    }
+
+    private func bind() {
+        tableView.delegate = dataSource
+        tableView.dataSource = dataSource
     }
 
     // MARK: - SegmentedControl Configurations
@@ -65,6 +73,10 @@ class ConverterView: UIView {
 
     // MARK: - UITableView Configurations
     private func configureTableView() {
+        tableView.rowHeight = 80
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = self.backgroundColor
+        tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
         setTableViewConstraints()
     }
 
@@ -117,7 +129,7 @@ class ConverterView: UIView {
     private func setShareButtonConstraints() {
         self.addSubview(shareButton)
         shareButton.snp.makeConstraints { make in
-            make.right.bottom.equalToSuperview().inset(10)
+            make.trailing.bottom.equalToSuperview().inset(10)
         }
     }
 }

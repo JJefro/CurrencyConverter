@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ExchangeRateButton: UIButton {
+class ExchangeRateButton: CardButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

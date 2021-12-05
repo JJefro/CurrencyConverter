@@ -16,6 +16,8 @@
 		9775223527517E6400F2A2B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9775223327517E6400F2A2B8 /* Main.storyboard */; };
 		9775223727517E6500F2A2B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9775223627517E6500F2A2B8 /* Assets.xcassets */; };
 		9775223A27517E6500F2A2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9775223827517E6500F2A2B8 /* LaunchScreen.storyboard */; };
+		97A4C76B275CFC600042E123 /* CardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76A275CFC600042E123 /* CardButton.swift */; };
+		97A4C76D275CFD1B0042E123 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */; };
 		97B0854827561041000035CA /* MainViewController + Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0854727561041000035CA /* MainViewController + Configuration.swift */; };
 		97B0854C2756116C000035CA /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */; };
 		97B0854D2756116C000035CA /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */; };
@@ -27,6 +29,8 @@
 		97B08562275619B4000035CA /* TextFieldsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B08561275619B4000035CA /* TextFieldsModel.swift */; };
 		97B0856427561A0D000035CA /* TextFieldsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856327561A0D000035CA /* TextFieldsSettings.swift */; };
 		97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */; };
+		97DE850D275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */; };
+		97DE8510275D54C1007BF4A5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97DE850F275D54C1007BF4A5 /* IQKeyboardManagerSwift */; };
 		EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B48ABF179B713DDD51C05B8 /* Pods_CurrencyConverter.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,8 @@
 		9775223627517E6500F2A2B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9775223927517E6500F2A2B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9775223B27517E6500F2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97A4C76A275CFC600042E123 /* CardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButton.swift; sourceTree = "<group>"; };
+		97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		97B0854727561041000035CA /* MainViewController + Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + Configuration.swift"; sourceTree = "<group>"; };
 		97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -56,6 +62,7 @@
 		97B08561275619B4000035CA /* TextFieldsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsModel.swift; sourceTree = "<group>"; };
 		97B0856327561A0D000035CA /* TextFieldsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsSettings.swift; sourceTree = "<group>"; };
 		97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldsView + UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewDatraSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +71,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */,
+				97DE8510275D54C1007BF4A5 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				97B0854E275611AC000035CA /* R.generated.swift */,
+				97A4C769275CFC440042E123 /* CustomControls */,
 				97B0856527561ABC000035CA /* TextFieldsView */,
 				9775224527517EBF00F2A2B8 /* MainView */,
 				9775224227517E8D00F2A2B8 /* Resources */,
@@ -151,6 +160,7 @@
 				9775223327517E6400F2A2B8 /* Main.storyboard */,
 				9705BCD2275AC7D800B67DC3 /* ConverterView.swift */,
 				97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */,
+				97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -158,12 +168,21 @@
 		9775224527517EBF00F2A2B8 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				97DE850B275D51F7007BF4A5 /* DataSource */,
 				97B0854527561027000035CA /* Extensions */,
 				97711AFB275C0C3200CCC7A4 /* Models */,
 				9775224427517EB100F2A2B8 /* Views */,
 				9775224127517E8500F2A2B8 /* Controller */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		97A4C769275CFC440042E123 /* CustomControls */ = {
+			isa = PBXGroup;
+			children = (
+				97A4C76A275CFC600042E123 /* CardButton.swift */,
+			);
+			path = CustomControls;
 			sourceTree = "<group>";
 		};
 		97B0854527561027000035CA /* Extensions */ = {
@@ -252,6 +271,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		97DE850B275D51F7007BF4A5 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		DAEC641E8BE82C66BC6746FF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +308,9 @@
 			dependencies = (
 			);
 			name = CurrencyConverter;
+			packageProductDependencies = (
+				97DE850F275D54C1007BF4A5 /* IQKeyboardManagerSwift */,
+			);
 			productName = CurrencyConverter;
 			productReference = 9775222A27517E6400F2A2B8 /* CurrencyConverter.app */;
 			productType = "com.apple.product-type.application";
@@ -309,6 +339,9 @@
 				Base,
 			);
 			mainGroup = 9775222127517E6300F2A2B8;
+			packageReferences = (
+				97DE850E275D54C1007BF4A5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 9775222B27517E6400F2A2B8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -429,10 +462,13 @@
 				97B0855D275615D3000035CA /* TextFieldView.swift in Sources */,
 				9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */,
 				97B0854F275611AC000035CA /* R.generated.swift in Sources */,
+				97DE850D275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift in Sources */,
 				97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */,
+				97A4C76B275CFC600042E123 /* CardButton.swift in Sources */,
 				97B0854827561041000035CA /* MainViewController + Configuration.swift in Sources */,
 				97B0856427561A0D000035CA /* TextFieldsSettings.swift in Sources */,
 				97711AFD275C0C6A00CCC7A4 /* Brain.swift in Sources */,
+				97A4C76D275CFD1B0042E123 /* CurrencyTableViewCell.swift in Sources */,
 				9775223027517E6400F2A2B8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -663,6 +699,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		97DE850E275D54C1007BF4A5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JJefro/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		97DE850F275D54C1007BF4A5 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 97DE850E275D54C1007BF4A5 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9775222227517E6400F2A2B8 /* Project object */;
 }

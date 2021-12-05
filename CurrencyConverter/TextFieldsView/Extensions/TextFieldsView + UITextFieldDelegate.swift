@@ -50,8 +50,12 @@ extension TextFieldView: UITextFieldDelegate {
         let currentText = text.replacingCharacters(in: textRange, with: string)
 
         switch fieldSettings {
+        case .noDigits:
+            return model.ignoreDigits(replacementString: string)
         case .onlyLetters:
             return model.allowOnlyLetters(replacementString: string)
+        case .onlyNumbers:
+            return model.allowOnlyNumbers(replacementString: string)
         case .inputLimit:
             inputLimitScore.text = String(model.updateLimitInput(length: textLength))
             updateLimitedInputFieldColor()
