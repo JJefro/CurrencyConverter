@@ -32,7 +32,7 @@ extension MainViewController {
         view.addSubview(converterView)
         converterView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.height.equalTo(view.frame.size.height / 2)
+            make.height.equalTo((view.frame.size.height / 2) + 50)
             make.left.right.equalToSuperview().inset(16)
         }
     }
