@@ -21,6 +21,8 @@ class CurrencyTableViewCell: UITableViewCell {
 
         contentView.addSubview(textFieldView)
         contentView.addSubview(currencyLabel)
+
+        textFieldView.backgroundColor = .clear
         
         setTextFieldViewConstraints()
         configureCurrencyLabel()
@@ -54,7 +56,7 @@ class CurrencyTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().inset(20)
             make.width.equalTo(200)
-            make.height.equalTo(30)
+            make.height.equalToSuperview()
         }
     }
 }

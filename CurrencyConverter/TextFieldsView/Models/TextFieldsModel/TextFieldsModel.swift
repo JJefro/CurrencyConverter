@@ -21,7 +21,7 @@ class TextFieldModel {
 
     // MARK: - onlyNumbersField
     func allowOnlyNumbers(replacementString string: String) -> Bool {
-        return string.isEmpty || string.contains(where: { $0.isNumber })
+        return string.isEmpty || string.contains(where: { $0.isNumber }) || string.contains(where: { $0.isPunctuation })
     }
 
     // MARK: - inputLimitField

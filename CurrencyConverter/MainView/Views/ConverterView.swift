@@ -74,7 +74,6 @@ class ConverterView: UIView {
     // MARK: - UITableView Configurations
     private func configureTableView() {
         tableView.rowHeight = 80
-        tableView.separatorStyle = .none
         tableView.backgroundColor = self.backgroundColor
         tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
         setTableViewConstraints()
