@@ -15,7 +15,7 @@ class ConverterView: UIView {
     var addCurrencyButton = CardButton()
     var shareButton = CardButton()
 
-    var dataSource = CurrencyTableViewDatraSource()
+    var dataSource = CurrencyTableViewDataSource()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

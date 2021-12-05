@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyTableViewDatraSource: NSObject, UITableViewDelegate {
+class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
 
     let objects: [String] = ["USD", "EUR", "RUB"]
 
@@ -21,7 +21,7 @@ class CurrencyTableViewDatraSource: NSObject, UITableViewDelegate {
     }
 }
 
-extension CurrencyTableViewDatraSource: UITableViewDataSource {
+extension CurrencyTableViewDataSource: UITableViewDataSource {
 
     // MARK: - UITableView Data Source Methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

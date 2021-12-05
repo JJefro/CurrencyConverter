@@ -29,7 +29,7 @@
 		97B08562275619B4000035CA /* TextFieldsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B08561275619B4000035CA /* TextFieldsModel.swift */; };
 		97B0856427561A0D000035CA /* TextFieldsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856327561A0D000035CA /* TextFieldsSettings.swift */; };
 		97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */; };
-		97DE850D275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */; };
+		97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */; };
 		97DE8510275D54C1007BF4A5 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 97DE850F275D54C1007BF4A5 /* IQKeyboardManagerSwift */; };
 		EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B48ABF179B713DDD51C05B8 /* Pods_CurrencyConverter.framework */; };
 /* End PBXBuildFile section */
@@ -62,7 +62,7 @@
 		97B08561275619B4000035CA /* TextFieldsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsModel.swift; sourceTree = "<group>"; };
 		97B0856327561A0D000035CA /* TextFieldsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsSettings.swift; sourceTree = "<group>"; };
 		97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldsView + UITextFieldDelegate.swift"; sourceTree = "<group>"; };
-		97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewDatraSource.swift; sourceTree = "<group>"; };
+		97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,7 +274,7 @@
 		97DE850B275D51F7007BF4A5 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				97DE850C275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift */,
+				97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -462,7 +462,7 @@
 				97B0855D275615D3000035CA /* TextFieldView.swift in Sources */,
 				9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */,
 				97B0854F275611AC000035CA /* R.generated.swift in Sources */,
-				97DE850D275D521B007BF4A5 /* CurrencyTableViewDatraSource.swift in Sources */,
+				97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */,
 				97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */,
 				97A4C76B275CFC600042E123 /* CardButton.swift in Sources */,
 				97B0854827561041000035CA /* MainViewController + Configuration.swift in Sources */,
