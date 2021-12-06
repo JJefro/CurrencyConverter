@@ -12,6 +12,7 @@ extension MainViewController {
 
     func configure() {
         title = R.string.localizable.mainView_navBar_title()
+        view.backgroundColor = R.color.mainView.backgroundColor()
         setConverterViewConstraints()
         configureUpdateLabels()
         setExchangeRateButtonConstraints()

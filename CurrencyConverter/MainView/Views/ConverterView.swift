@@ -19,7 +19,7 @@ class ConverterView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .white
+        backgroundColor = R.color.converterView.backgroundColor()
         layer.masksToBounds = false
         layer.cornerRadius = 10
         layer.shadowRadius = 1
@@ -31,6 +31,11 @@ class ConverterView: UIView {
         bind()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureTableView()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -38,7 +43,6 @@ class ConverterView: UIView {
     private func configure() {
         configureSegmentedControl()
         configureAddCurrencyButton()
-        configureTableView()
         configureShareButton()
     }
 
@@ -74,7 +78,9 @@ class ConverterView: UIView {
     // MARK: - UITableView Configurations
     private func configureTableView() {
         tableView.rowHeight = 80
-        tableView.backgroundColor = self.backgroundColor
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = R.color.converterView.backgroundColor()
+
         tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
         setTableViewConstraints()
     }
