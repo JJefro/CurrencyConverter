@@ -28,6 +28,7 @@ extension CurrencyTableViewDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyTableViewCell.identifier) as! CurrencyTableViewCell
         let object = objects[indexPath.row]
         cell.set(currency: object)
+        cell.selectionStyle = .none
         return cell
     }
 }

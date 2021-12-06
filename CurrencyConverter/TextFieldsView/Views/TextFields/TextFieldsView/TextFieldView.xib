@@ -33,8 +33,8 @@
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JcB-vD-sxn" customClass="CustomTextField" customModule="CurrencyConverter" customModuleProvider="target">
                             <rect key="frame" x="16" y="16" width="379" height="34"/>
-                            <color key="backgroundColor" name="SetViewBackgroundColor"/>
-                            <color key="textColor" name="tfTextColor"/>
+                            <color key="backgroundColor" name="converterView/backgroundColor"/>
+                            <color key="textColor" name="TextFieldsColors/tfTextColor"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -47,7 +47,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7A-8x-YUH">
-                            <rect key="frame" x="367" y="51" width="19" height="20"/>
+                            <rect key="frame" x="367" y="35" width="19" height="20"/>
                             <color key="backgroundColor" name="SetViewBackgroundColor"/>
                             <color key="tintColor" name="TextColor"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="17"/>
@@ -55,13 +55,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" name="SetViewBackgroundColor"/>
+                    <color key="backgroundColor" name="converterView/backgroundColor"/>
                     <color key="tintColor" name="TextColor"/>
                     <constraints>
                         <constraint firstItem="loU-HL-9AZ" firstAttribute="leading" secondItem="hFq-h0-bSu" secondAttribute="leading" constant="16" id="2n8-9D-ywa"/>
                         <constraint firstItem="JcB-vD-sxn" firstAttribute="centerY" secondItem="hFq-h0-bSu" secondAttribute="centerY" id="7yX-lv-BwM"/>
                         <constraint firstAttribute="trailing" secondItem="JcB-vD-sxn" secondAttribute="trailing" constant="16" id="B5P-BS-6HN"/>
-                        <constraint firstAttribute="bottom" secondItem="e7A-8x-YUH" secondAttribute="bottom" constant="-5" id="Fi2-Z0-Uqa"/>
+                        <constraint firstAttribute="bottom" secondItem="e7A-8x-YUH" secondAttribute="bottom" constant="11" id="Fi2-Z0-Uqa"/>
                         <constraint firstItem="JcB-vD-sxn" firstAttribute="top" secondItem="loU-HL-9AZ" secondAttribute="bottom" constant="8" id="eyg-0h-i4Q"/>
                         <constraint firstAttribute="height" priority="250" constant="66" id="o54-FQ-n1o"/>
                         <constraint firstItem="JcB-vD-sxn" firstAttribute="leading" secondItem="hFq-h0-bSu" secondAttribute="leading" constant="16" id="pld-Nx-jwB"/>
@@ -70,8 +70,8 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" name="SetViewBackgroundColor"/>
-            <color key="tintColor" name="TextColor"/>
+            <color key="backgroundColor" name="converterView/backgroundColor"/>
+            <color key="tintColor" name="mainView/textColor"/>
             <constraints>
                 <constraint firstItem="hFq-h0-bSu" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="3SJ-R1-bII"/>
                 <constraint firstItem="hFq-h0-bSu" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="3mu-1v-3Sw"/>
@@ -89,6 +89,15 @@
         </namedColor>
         <namedColor name="TextColor">
             <color red="0.14900000393390656" green="0.10999999940395355" blue="0.17299999296665192" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextFieldsColors/tfTextColor">
+            <color red="0.11400000005960464" green="0.12200000137090683" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="converterView/backgroundColor">
+            <color red="0.93333339689999995" green="0.92549026010000002" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="mainView/textColor">
+            <color red="0.25099998712539673" green="0.25099998712539673" blue="0.25099998712539673" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="tfTextColor">
             <color red="0.11400000005960464" green="0.12200000137090683" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

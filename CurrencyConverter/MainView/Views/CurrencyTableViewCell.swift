@@ -22,7 +22,8 @@ class CurrencyTableViewCell: UITableViewCell {
         contentView.addSubview(textFieldView)
         contentView.addSubview(currencyLabel)
 
-        textFieldView.backgroundColor = .clear
+        contentView.backgroundColor = R.color.converterView.backgroundColor()
+        backgroundColor = R.color.converterView.backgroundColor()
         
         setTextFieldViewConstraints()
         configureCurrencyLabel()
