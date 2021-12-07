@@ -11,7 +11,7 @@ class TextFieldModel {
 
     // MARK: - noDigitsField
     func ignoreDigits(replacementString string: String) -> Bool {
-        return !string.contains(where: { $0.isNumber })
+        return string.isEmpty || !string.contains(where: { $0.isNumber })
     }
 
     // MARK: - onlyLettersField

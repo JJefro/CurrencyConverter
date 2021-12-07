@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		9705BCD3275AC7D800B67DC3 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705BCD2275AC7D800B67DC3 /* ConverterView.swift */; };
+		9724293A275F4CB900C042B4 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97242939275F4CB900C042B4 /* Secrets.swift */; };
+		9724293C275F4D0B00C042B4 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9724293B275F4D0B00C042B4 /* Secrets.plist */; };
+		9724293E275F4EA000C042B4 /* CurrencyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9724293D275F4EA000C042B4 /* CurrencyData.swift */; };
+		97242942275F54BB00C042B4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97242941275F54BB00C042B4 /* NetworkManager.swift */; };
+		97242944275F554E00C042B4 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97242943275F554E00C042B4 /* NetworkError.swift */; };
+		97242946275F66EC00C042B4 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97242945275F66EC00C042B4 /* Currency.swift */; };
 		97711AFD275C0C6A00CCC7A4 /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97711AFC275C0C6A00CCC7A4 /* Brain.swift */; };
 		97711AFF275C0DC000CCC7A4 /* ExchangeRateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */; };
 		9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775222D27517E6400F2A2B8 /* AppDelegate.swift */; };
@@ -39,6 +45,12 @@
 		2E01B477A7B0CBE502F6C96B /* Pods-CurrencyConverter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.release.xcconfig"; path = "Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.release.xcconfig"; sourceTree = "<group>"; };
 		4B48ABF179B713DDD51C05B8 /* Pods_CurrencyConverter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrencyConverter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9705BCD2275AC7D800B67DC3 /* ConverterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterView.swift; sourceTree = "<group>"; };
+		97242939275F4CB900C042B4 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		9724293B275F4D0B00C042B4 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Secrets.plist; sourceTree = "<group>"; };
+		9724293D275F4EA000C042B4 /* CurrencyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyData.swift; sourceTree = "<group>"; };
+		97242941275F54BB00C042B4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		97242943275F554E00C042B4 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		97242945275F66EC00C042B4 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		97711AFC275C0C6A00CCC7A4 /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
 		97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateButton.swift; sourceTree = "<group>"; };
 		9775222A27517E6400F2A2B8 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,10 +98,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9724293F275F546B00C042B4 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				97242940275F547800C042B4 /* Network */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		97242940275F547800C042B4 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				97242941275F54BB00C042B4 /* NetworkManager.swift */,
+				97242943275F554E00C042B4 /* NetworkError.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		97711AFB275C0C3200CCC7A4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				97711AFC275C0C6A00CCC7A4 /* Brain.swift */,
+				9724293D275F4EA000C042B4 /* CurrencyData.swift */,
+				97242945275F66EC00C042B4 /* Currency.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -116,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				97B0854E275611AC000035CA /* R.generated.swift */,
+				9724293F275F546B00C042B4 /* Managers */,
 				97A4C769275CFC440042E123 /* CustomControls */,
 				97B0856527561ABC000035CA /* TextFieldsView */,
 				9775224527517EBF00F2A2B8 /* MainView */,
@@ -150,6 +182,8 @@
 				9775222D27517E6400F2A2B8 /* AppDelegate.swift */,
 				9775222F27517E6400F2A2B8 /* SceneDelegate.swift */,
 				9775223827517E6500F2A2B8 /* LaunchScreen.storyboard */,
+				97242939275F4CB900C042B4 /* Secrets.swift */,
+				9724293B275F4D0B00C042B4 /* Secrets.plist */,
 			);
 			path = SupportingFiles;
 			sourceTree = "<group>";
@@ -356,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9724293C275F4D0B00C042B4 /* Secrets.plist in Resources */,
 				9775223A27517E6500F2A2B8 /* LaunchScreen.storyboard in Resources */,
 				97B08552275611D1000035CA /* Localizable.strings in Resources */,
 				9775223727517E6500F2A2B8 /* Assets.xcassets in Resources */,
@@ -454,14 +489,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97242942275F54BB00C042B4 /* NetworkManager.swift in Sources */,
+				9724293E275F4EA000C042B4 /* CurrencyData.swift in Sources */,
 				97B0855927561580000035CA /* CustomTextField.swift in Sources */,
 				9775223227517E6400F2A2B8 /* MainViewController.swift in Sources */,
 				9705BCD3275AC7D800B67DC3 /* ConverterView.swift in Sources */,
 				97B08562275619B4000035CA /* TextFieldsModel.swift in Sources */,
 				97711AFF275C0DC000CCC7A4 /* ExchangeRateButton.swift in Sources */,
+				9724293A275F4CB900C042B4 /* Secrets.swift in Sources */,
 				97B0855D275615D3000035CA /* TextFieldView.swift in Sources */,
+				97242944275F554E00C042B4 /* NetworkError.swift in Sources */,
 				9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */,
 				97B0854F275611AC000035CA /* R.generated.swift in Sources */,
+				97242946275F66EC00C042B4 /* Currency.swift in Sources */,
 				97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */,
 				97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */,
 				97A4C76B275CFC600042E123 /* CardButton.swift in Sources */,
