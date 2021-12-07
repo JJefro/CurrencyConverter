@@ -32,6 +32,9 @@ class MainViewController: UIViewController {
     }
 
     @objc func updatingExchangeRateButtonPressed(_ sender: UIButton) {
+        brain.convertCurrencies(currency: .EUR, toCurrency: .USD) {
+            print("success")
+        }
         print("Exchange Rate Button Pressed")
     }
 }

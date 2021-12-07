@@ -34,3 +34,8 @@
 "textFields_placeholder_onlyCharacters"  = "wwwww-ddddd";
 "textFields_placeholder_link"            = "www.example.com";
 "textFields_placeholder_validationRules" = "Password";
+
+"networkError_badStatusCode"     = "Can't get data from the server.";
+"networkError_badURL"            = "Invalid URL";
+"networkError_badServerResponse" = "Check your internet connection.";
+"networkError_noDataError"       = "No data was returned.";
