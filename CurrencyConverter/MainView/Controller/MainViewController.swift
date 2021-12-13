@@ -9,12 +9,12 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var converterView = ConverterView()
-    var updateLabel = UILabel()
-    var dateOfLastUpdateLabel = UILabel()
-    var updatingExchangeRateButton = ExchangeRateButton()
+    @IBOutlet weak var converterView: ConverterView!
+    @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var dateOfLastUpdateLabel: UILabel!
+    @IBOutlet weak var updatingExchangeRateButton: ExchangeRateButton!
 
-    var brain = Brain()
+    var brain = CurrencyBrain()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +32,9 @@ class MainViewController: UIViewController {
     }
 
     @objc func updatingExchangeRateButtonPressed(_ sender: UIButton) {
-        brain.convertCurrencies(currency: .EUR, toCurrency: .USD) {
-            print("success")
-        }
-        print("Exchange Rate Button Pressed")
+        brain.convert(completion: { currencyEntity in
+            self.converterView.dataSource.objects = currencyEntity.data
+            self.converterView.tableView.reloadData()
+        })
     }
 }

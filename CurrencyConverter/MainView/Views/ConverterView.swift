@@ -17,8 +17,13 @@ class ConverterView: UIView {
 
     var dataSource = CurrencyTableViewDataSource()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureTableView()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         backgroundColor = R.color.converterView.backgroundColor()
         layer.masksToBounds = false
         layer.cornerRadius = 10
@@ -29,15 +34,6 @@ class ConverterView: UIView {
 
         configure()
         bind()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        configureTableView()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     private func configure() {
@@ -77,7 +73,7 @@ class ConverterView: UIView {
 
     // MARK: - UITableView Configurations
     private func configureTableView() {
-        tableView.rowHeight = 80
+        tableView.rowHeight = 60
         tableView.separatorStyle = .none
         tableView.backgroundColor = R.color.converterView.backgroundColor()
 

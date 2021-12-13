@@ -18,7 +18,7 @@ class CardButton: UIButton {
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
-            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+            self.transform = .identity
         }, completion: nil)
         super.touchesEnded(touches, with: event)
     }

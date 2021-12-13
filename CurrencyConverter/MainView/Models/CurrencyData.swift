@@ -2,7 +2,7 @@
 //  CurrencyData.swift
 //  CurrencyConverter
 //
-//  Created by Jevgenijs Jefrosinins on 07/12/2021.
+//  Created by Jevgenijs Jefrosinins on 13/12/2021.
 //
 
 import Foundation
