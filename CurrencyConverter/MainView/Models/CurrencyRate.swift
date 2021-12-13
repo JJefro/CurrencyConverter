@@ -14,4 +14,8 @@ struct CurrencyRate {
     var rateString: String {
         return String(format: "%.2f", rate)
     }
+
+    var locale: String? {
+        return LocalizedCurrency.init(currency: currency).locale
+    }
 }
