@@ -9,7 +9,8 @@ import UIKit
 
 class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
 
-    let objects: [String] = ["USD", "EUR", "RUB"]
+    var objects: [CurrencyRate] = []
+    var model = CurrencyBrain()
 
     // MARK: - UITableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -17,6 +18,8 @@ class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let baseCurrency = objects[indexPath.row].currency
+        model.baseCurrency = baseCurrency
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

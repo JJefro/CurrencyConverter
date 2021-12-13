@@ -6,146 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
-enum Currency {
-    case AED
-    case MDL
-    case LKR
-    case LRD
-    case LSL
-    case LTC
-    case AUD
-    case LYD
-    case UZS
-    case MAD
-    case MGA
-    case LAK
-    case MKD
-    case MMK
-    case MNT
-    case MOP
-    case MUR
-    case USD
-    case MVR
-    case MWK
-    case MXN
-    case LBP
-    case VND
-    case MZN
-    case JMD
-    case HUF
-    case IDR
-    case XOF
-    case ILS
-    case INR
-    case IQD
-    case IRR
-    case ISK
-    case JOD
-    case KZT
-    case JPY
-    case XAF
-    case KES
-    case KGS
-    case KHR
-    case KMF
-    case KRW
-    case KYD
-    case TTD
-    case MYR
-    case URY
-    case HRV
-    case AFN
-    case SDG
-    case SEK
-    case TZS
-    case SGD
-    case SLL
-    case SOS
-    case SRD
-    case SSP
-    case STD
-    case SAR
-    case SVC
-    case TWD
-    case SYP
-    case SZL
-    case THB
-    case TJS
-    case TMT
-    case TND
-    case TRY
-    case SCR
-    case RWF
-    case NAD
-    case PAB
-    case NGN
-    case NIO
-    case ALL
-    case NOK
-    case NPR
-    case NZD
-    case OMR
-    case UGX
-    case PEN
-    case RUB
-    case PGK
-    case PHP
-    case PKR
-    case PLN
-    case PYG
-    case QAR
-    case UAH
-    case RON
-    case RSD
-    case HTG
-    case AMD
-    case CNY
-    case BWP
-    case BOB
-    case FJD
-    case EUR
-    case BRL
-    case ETH
-    case XRP
-    case ETB
-    case ERN
-    case EGP
-    case ARS
-    case BTC
-    case DZD
-    case DOP
-    case DKK
-    case BND
-    case BYR
-    case DJF
-    case CAD
-    case CZK
-    case YER
-    case ZAR
-    case CVE
-    case HNL
-    case CDF
-    case CUC
-    case CRC
-    case CHF
-    case COP
-    case CLP
-    case GBP
-    case BSD
-    case GEL
-    case BGN
-    case XPF
-    case GYD
-    case BDT
-    case GHS
-    case GMD
-    case GTQ
-    case AOA
-    case HKD
-    case BIH
-    case BHD
-    case AZN
-    case GNF
-    case BIF
+enum Currency: CaseIterable {
+    case AED, MDL, LKR, LRD, LSL, LTC, AUD, LYD, UZS, MAD, MGA, LAK, MKD, MMK, MNT, MOP, MUR, USD
+    case MVR, MWK, MXN, LBP, VND, MZN, JMD, HUF, IDR, XOF, ILS, INR, IQD, IRR, ISK, JOD, KZT, JPY
+    case XAF, KES, KGS, KHR, KMF, KRW, KYD, TTD, MYR, URY, HRV, AFN, SDG, SEK, TZS, SGD, SLL, SOS
+    case SRD, SSP, STD, SAR, SVC, TWD, SYP, SZL, THB, TJS, TMT, TND, TRY, SCR, RWF, NAD, PAB, NGN
+    case NIO, ALL, NOK, NPR, NZD, OMR, UGX, PEN, RUB, PGK, PHP, PKR, PLN, PYG, QAR, UAH, RON, RSD
+    case HTG, AMD, CNY, BWP, BOB, FJD, EUR, BRL, ETH, XRP, ETB, ERN, EGP, ARS, BTC, DZD, DOP, DKK
+    case BND, BYR, DJF, CAD, CZK, YER, ZAR, CVE, HNL, CDF, CUC, CRC, CHF, COP, CLP, GBP, BSD, GEL
+    case BGN, XPF, GYD, BDT, GHS, GMD, GTQ, AOA, HKD, BIH, BHD, AZN, GNF, BIF
 }

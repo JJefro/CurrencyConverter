@@ -7,30 +7,42 @@
 
 import Foundation
 
-typealias RequestCompletion = (Result<CurrencyData, Error>) -> Void
-typealias CurrencyRatesCompletion = ((_ currencyRates: Result<CurrencyData, Error>) -> Void)
+typealias RequestCompletion = (Result<CurrencyEntity, Error>) -> Void
+typealias CurrencyRatesCompletion = ((_ currencyRates: Result<CurrencyEntity, Error>) -> Void)
 
 class NetworkManager {
 
-    private var currencyURL = "https://freecurrencyapi.net/api/v2/latest?apikey=\(Secrets.apiKey)"
+    private var components: URLComponents = {
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "https"
+        urlComponents.host = "freecurrencyapi.net"
+        urlComponents.path = "/api/v2/latest"
+        urlComponents.queryItems = [URLQueryItem(name: "apikey", value: Secrets.apiKey)]
+        return urlComponents
+    }()
+
     private var networkRequestCompletion: (RequestCompletion)?
 
-    func getCurrencyRatesFrom(baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
-        let url = "\(currencyURL)&base_currency=\(String(describing: baseCurrency))"
-        performRequest(url: url) { result in
+    func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
+        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: String(describing: baseCurrency))
+        components.queryItems?.append(baseCurrencyItemQuery)
+        performRequest(url: components.url) { result in
             completion(result)
         }
     }
 
     func getHistoricalCurrencyRates(fromDate: String, toDate: String, baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
-        let url = "\(currencyURL)&base_currency=\(String(describing: baseCurrency))&date_from=\(fromDate)&date_to=\(toDate)"
-        performRequest(url: url) { result in
+        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: String(describing: baseCurrency))
+        let dateFromItemQuery = URLQueryItem(name: "date_from", value: fromDate)
+        let toDateItemQuery = URLQueryItem(name: "date_to", value: toDate)
+        components.queryItems?.append(contentsOf: [baseCurrencyItemQuery, dateFromItemQuery, toDateItemQuery])
+        performRequest(url: components.url) { result in
             completion(result)
         }
     }
 
-    private func performRequest(url: String, completion: @escaping RequestCompletion) {
-        guard let url = URL(string: url) else {
+    private func performRequest(url: URL?, completion: @escaping RequestCompletion) {
+        guard let url = url else {
             DispatchQueue.main.async {
                 completion(.failure(NetworkError.badURL))
             }
@@ -75,12 +87,12 @@ class NetworkManager {
         task.resume()
     }
 
-    private func parseJSON(_ currencyData: Data) -> CurrencyData? {
+    private func parseJSON(_ currencyData: Data) -> CurrencyEntity? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
             let decoderData = try decoder.decode(CurrencyData.self, from: currencyData)
-            return decoderData
+            return CurrencyEntity(decoderData)
         } catch {
             networkRequestCompletion?(.failure(error))
             return nil
