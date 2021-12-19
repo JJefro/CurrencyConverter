@@ -14,8 +14,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var dateOfLastUpdateLabel: UILabel!
     @IBOutlet weak var updatingExchangeRateButton: ExchangeRateButton!
 
-    var brain = CurrencyBrain()
-
+    let repository = DataManager(localDataSource: RatesLocalDataSource(), remoteDataSource: RatesRemoteDataSource(networkManager: NetworkManager()))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -25,16 +25,26 @@ class MainViewController: UIViewController {
     }
 
     @objc func addCurrencyButtonPressed(_ sender: UIButton) {
-        print("Add Currency Button Pressed")
     }
 
     @objc func shareButtonPressed(_ sender: UIButton) {
+
     }
 
     @objc func updatingExchangeRateButtonPressed(_ sender: UIButton) {
-        brain.convert(completion: { currencyEntity in
-            self.converterView.dataSource.objects = currencyEntity.data
-            self.converterView.tableView.reloadData()
-        })
+        repository.fetchRates { result in
+            switch result {
+            case let .success(rates):
+                self.converterView.dataSource.objects = rates.wrappedValue
+                self.converterView.tableView.reloadData()
+            case let .failure(error):
+                print(error)
+            }
+        }
+    }
+}
+
+extension MainViewController: CurrencyTableViewDataSourceDelegate {
+    func getBaseCurrency(currency: Currency) {
     }
 }

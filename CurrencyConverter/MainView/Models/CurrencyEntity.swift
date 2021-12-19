@@ -11,20 +11,21 @@ import UIKit
 struct CurrencyEntity {
 
     var currencyDictionary: [String: Double]
+    var baseCurrency: Currency
 
-    init(_ data: CurrencyData) {
+    init(_ data: CurrencyData, baseCurrency: Currency) {
         self.currencyDictionary = data.data
+        self.baseCurrency = baseCurrency
     }
 
     var data: [CurrencyRate] {
         var data: [CurrencyRate] = []
         for item in currencyDictionary {
-            if let currency = Currency.allCases.first(where: { String(describing: $0) == item.key }) {
-                data.append(CurrencyRate(currency: currency, rate: item.value))
+            let currency = Currency.init(rawValue: item.key)
+            if let locale = LocalizedCurrency.init(currency: currency).locale {
+                data.append(CurrencyRate(base: baseCurrency, currency: currency, locale: locale, rate: item.value))
             }
         }
-        return data.sorted(by: {
-            String(describing: $0.currency) < String(describing: $1.currency)
-        })
+        return data.sorted(by: { $0.currency.rawValue < $1.currency.rawValue })
     }
 }

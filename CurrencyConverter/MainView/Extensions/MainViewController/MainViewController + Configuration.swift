@@ -15,6 +15,11 @@ extension MainViewController {
         view.backgroundColor = R.color.mainView.backgroundColor()
         configureUpdateLabels()
         addTargetsToButtons()
+        bind()
+    }
+
+    func bind() {
+        converterView.dataSource.delegate = self
     }
 
     // MARK: - Buttons Targets
@@ -32,7 +37,6 @@ extension MainViewController {
         updateLabel.font = R.font.sfProDisplayRegular(size: 12)
         updateLabel.textColor = R.color.mainView.textColor()
 
-        dateOfLastUpdateLabel.text = brain.getCurrentDataString()
         dateOfLastUpdateLabel.font = R.font.sfProDisplayRegular(size: 12)
         dateOfLastUpdateLabel.textColor = R.color.mainView.textColor()
     }

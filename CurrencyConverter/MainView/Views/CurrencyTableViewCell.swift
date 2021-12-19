@@ -41,7 +41,7 @@ class CurrencyTableViewCell: UITableViewCell {
     }
 
     func set(currency: CurrencyRate) {
-        let currencyString = String(describing: currency.currency)
+        let currencyString = currency.currency.rawValue
         let text = NSMutableAttributedString(string: currencyString)
         let spacing = NSMutableAttributedString(string: "  ")
         text.append(spacing)
