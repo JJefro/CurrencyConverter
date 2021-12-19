@@ -7,15 +7,13 @@
 
 import Foundation
 
-struct CurrencyRate {
+struct CurrencyRate: Codable, Equatable {
+    let base: Currency
     var currency: Currency
+    var locale: String
     var rate: Double
 
     var rateString: String {
         return String(format: "%.2f", rate)
-    }
-
-    var locale: String? {
-        return LocalizedCurrency.init(currency: currency).locale
     }
 }

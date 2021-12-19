@@ -10,7 +10,12 @@ import Foundation
 typealias RequestCompletion = (Result<CurrencyEntity, Error>) -> Void
 typealias CurrencyRatesCompletion = ((_ currencyRates: Result<CurrencyEntity, Error>) -> Void)
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion)
+    func getHistoricalCurrencyRates(fromDate: String, toDate: String, baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion)
+}
+
+class NetworkManager: NetworkManagerProtocol {
 
     private var components: URLComponents = {
         var urlComponents = URLComponents()
@@ -22,9 +27,11 @@ class NetworkManager {
     }()
 
     private var networkRequestCompletion: (RequestCompletion)?
+    private var base: Currency!
 
     func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
-        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: String(describing: baseCurrency))
+        base = baseCurrency
+        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
         components.queryItems?.append(baseCurrencyItemQuery)
         performRequest(url: components.url) { result in
             completion(result)
@@ -32,7 +39,7 @@ class NetworkManager {
     }
 
     func getHistoricalCurrencyRates(fromDate: String, toDate: String, baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
-        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: String(describing: baseCurrency))
+        let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
         let dateFromItemQuery = URLQueryItem(name: "date_from", value: fromDate)
         let toDateItemQuery = URLQueryItem(name: "date_to", value: toDate)
         components.queryItems?.append(contentsOf: [baseCurrencyItemQuery, dateFromItemQuery, toDateItemQuery])
@@ -92,7 +99,7 @@ class NetworkManager {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
             let decoderData = try decoder.decode(CurrencyData.self, from: currencyData)
-            return CurrencyEntity(decoderData)
+            return CurrencyEntity(decoderData, baseCurrency: base)
         } catch {
             networkRequestCompletion?(.failure(error))
             return nil
