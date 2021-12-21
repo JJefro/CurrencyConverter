@@ -15,6 +15,7 @@ extension MainViewController {
         view.backgroundColor = R.color.mainView.backgroundColor()
         configureUpdateLabels()
         addTargetsToButtons()
+        setLoadingViewConstraints()
         bind()
     }
 
@@ -29,6 +30,13 @@ extension MainViewController {
         converterView.shareButton.addTarget(self, action: #selector(shareButtonPressed(_:)), for: .touchUpInside)
         
         updatingExchangeRateButton.addTarget(self, action: #selector(updatingExchangeRateButtonPressed(_:)), for: .touchUpInside)
+    }
+
+    private func setLoadingViewConstraints() {
+        view.addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
     // MARK: - UpdateLabels Configurations

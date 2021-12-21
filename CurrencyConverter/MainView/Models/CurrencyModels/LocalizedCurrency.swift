@@ -8,7 +8,6 @@
 import Foundation
 
 struct LocalizedCurrency {
-
     let currency: Currency
 
     var locale: String? {

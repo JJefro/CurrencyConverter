@@ -15,12 +15,14 @@ class CurrencyTableViewCell: UITableViewCell {
     private var currencyLabel = UILabel()
     private var textFieldView = TextFieldView()
     private var horizontalStack = UIStackView()
+    private var currencyLabelHorizontalStack = UIStackView()
 
-    private var imageAttachment: NSAttributedString = {
+    private var chevronRightImageString: UILabel = {
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(systemName: "chevron.right")
-        imageAttachment.bounds = CGRect(x: 0, y: -2, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
-        return NSAttributedString(attachment: imageAttachment)
+        let text = UILabel()
+        text.attributedText = NSAttributedString(attachment: imageAttachment)
+        return text
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -32,8 +34,8 @@ class CurrencyTableViewCell: UITableViewCell {
         backgroundColor = R.color.converterView.backgroundColor()
 
         configureHorizontalStack()
+        configureCurrencyLabelHorizontalStack()
         configureCurrencyLabel()
-        setTextFieldConstraints()
     }
 
     required init?(coder: NSCoder) {
@@ -41,22 +43,17 @@ class CurrencyTableViewCell: UITableViewCell {
     }
 
     func set(currency: CurrencyRate) {
-        let currencyString = currency.currency.rawValue
-        let text = NSMutableAttributedString(string: currencyString)
-        let spacing = NSMutableAttributedString(string: "  ")
-        text.append(spacing)
-        text.append(imageAttachment)
-        currencyLabel.attributedText = text
-        textFieldView.txtField.text = String(currency.rateString)
+        currencyLabel.text = currency.currency.rawValue
+        textFieldView.txtField.text = currency.rateString
     }
 
     // MARK: - HorizontalStack Configurations
     private func configureHorizontalStack() {
         horizontalStack.axis = .horizontal
-        horizontalStack.distribution = .fill
+        horizontalStack.distribution = .fillProportionally
         horizontalStack.spacing = 7
         horizontalStack.alignment = .center
-        horizontalStack.addArrangedSubview(currencyLabel)
+        horizontalStack.addArrangedSubview(currencyLabelHorizontalStack)
         horizontalStack.addArrangedSubview(textFieldView)
 
         setHorizontalStackConstraints()
@@ -66,26 +63,35 @@ class CurrencyTableViewCell: UITableViewCell {
         horizontalStack.snp.makeConstraints { make in
             switch UIDevice.current.userInterfaceIdiom {
             case .pad, .mac:
-                make.width.equalToSuperview().dividedBy(2.3)
+                make.width.equalToSuperview().dividedBy(2.8)
             default:
-                make.width.equalToSuperview().dividedBy(1.3)
+                make.width.equalToSuperview().dividedBy(1.4)
             }
             make.height.equalToSuperview()
             make.center.equalToSuperview()
         }
     }
 
+    private func configureCurrencyLabelHorizontalStack() {
+        currencyLabelHorizontalStack.axis = .horizontal
+        currencyLabelHorizontalStack.distribution = .equalSpacing
+        currencyLabelHorizontalStack.alignment = .center
+        currencyLabelHorizontalStack.addArrangedSubview(currencyLabel)
+        currencyLabelHorizontalStack.addArrangedSubview(chevronRightImageString)
+
+        setCurrencyLabelHorizontalStackConstraints()
+    }
+
+    private func setCurrencyLabelHorizontalStackConstraints() {
+        currencyLabelHorizontalStack.snp.makeConstraints { make in
+            make.width.equalTo(50)
+        }
+    }
+
     // MARK: - CurrencyLabel Configurations
     private func configureCurrencyLabel() {
         currencyLabel.font = R.font.sfProDisplayRegular(size: 17)
-        currencyLabel.textAlignment = .center
+        currencyLabel.textAlignment = .left
         currencyLabel.textColor = R.color.mainView.textColor()
-    }
-
-    // MARK: - TextFieldView Constraints
-    private func setTextFieldConstraints() {
-        textFieldView.snp.makeConstraints { make in
-            make.width.lessThanOrEqualTo(200)
-        }
     }
 }
