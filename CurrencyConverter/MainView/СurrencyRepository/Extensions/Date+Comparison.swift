@@ -9,7 +9,7 @@ import Foundation
 
 extension Date {
     var isInMinuteIntervalWithCurrentTime: Bool {
-        let component: Calendar.Component = .minute
+        let component: Calendar.Component = .hour
         return Calendar.current.dateComponents([component], from: self, to: Date()).value(for: component) == 0
     }
 }

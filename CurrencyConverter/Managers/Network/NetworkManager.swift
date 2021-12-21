@@ -27,10 +27,8 @@ class NetworkManager: NetworkManagerProtocol {
     }()
 
     private var networkRequestCompletion: (RequestCompletion)?
-    private var base: Currency!
 
     func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
-        base = baseCurrency
         let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
         components.queryItems?.append(baseCurrencyItemQuery)
         performRequest(url: components.url) { result in
@@ -55,6 +53,8 @@ class NetworkManager: NetworkManagerProtocol {
             }
             return
         }
+        print(url.description)
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 
@@ -96,10 +96,9 @@ class NetworkManager: NetworkManagerProtocol {
 
     private func parseJSON(_ currencyData: Data) -> CurrencyEntity? {
         let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
             let decoderData = try decoder.decode(CurrencyData.self, from: currencyData)
-            return CurrencyEntity(decoderData, baseCurrency: base)
+            return CurrencyEntity(decoderData)
         } catch {
             networkRequestCompletion?(.failure(error))
             return nil
