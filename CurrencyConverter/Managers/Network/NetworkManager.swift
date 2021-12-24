@@ -32,6 +32,7 @@ class NetworkManager: NetworkManagerProtocol {
         let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
         components.queryItems?.append(baseCurrencyItemQuery)
         performRequest(url: components.url) { result in
+            self.removeUsedComponents()
             completion(result)
         }
     }
@@ -42,8 +43,15 @@ class NetworkManager: NetworkManagerProtocol {
         let toDateItemQuery = URLQueryItem(name: "date_to", value: toDate)
         components.queryItems?.append(contentsOf: [baseCurrencyItemQuery, dateFromItemQuery, toDateItemQuery])
         performRequest(url: components.url) { result in
+            self.removeUsedComponents()
             completion(result)
         }
+    }
+
+    private func removeUsedComponents() {
+        components.queryItems?.removeAll(where: { $0.name == "base_currency" })
+        components.queryItems?.removeAll(where: { $0.name == "date_from" })
+        components.queryItems?.removeAll(where: { $0.name == "date_to" })
     }
 
     private func performRequest(url: URL?, completion: @escaping RequestCompletion) {

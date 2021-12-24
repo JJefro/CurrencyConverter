@@ -13,7 +13,7 @@ class CurrencyTableViewCell: UITableViewCell {
     static let identifier = "CurrencyTableViewCell"
 
     private var currencyLabel = UILabel()
-    private var textFieldView = TextFieldView()
+    var textFieldView = TextFieldView()
     private var horizontalStack = UIStackView()
     private var currencyLabelHorizontalStack = UIStackView()
 
@@ -45,6 +45,13 @@ class CurrencyTableViewCell: UITableViewCell {
     func set(currency: CurrencyRate) {
         currencyLabel.text = currency.currency.rawValue
         textFieldView.txtField.text = currency.rateString
+    }
+
+    func getCurrentRate() -> Double? {
+        if let rate = Double(textFieldView.txtField.text!) {
+            return rate
+        }
+        return nil
     }
 
     // MARK: - HorizontalStack Configurations
