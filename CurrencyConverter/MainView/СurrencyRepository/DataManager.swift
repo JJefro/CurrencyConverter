@@ -21,7 +21,7 @@ class DataManager: RatesRepositoryProtocol {
     }
 
     func fetchRates(currencies: [Currency], completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void) {
-        if let localRates = localDataSource.rates, localRates.createdAt.isInMinuteIntervalWithCurrentTime {
+        if let localRates = localDataSource.rates, localRates.createdAt.isInHourIntervalWithCurrentTime {
             completion(.success(localRates))
         } else {
             remoteDataSource.fetchRates(currencies: currencies) { [localDataSource] result in
