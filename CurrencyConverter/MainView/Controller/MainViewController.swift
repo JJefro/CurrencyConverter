@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  CurrencyConverter
 //
 //  Created by Jevgenijs Jefrosinins on 26/11/2021.
@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
     }
 
     @objc func shareButtonPressed(_ sender: UIButton) {
-
+        print(brain.currentRates)
     }
 
     @objc func updatingExchangeRateButtonPressed(_ sender: UIButton) {
@@ -41,17 +41,7 @@ class MainViewController: UIViewController {
 
     private func updateData() {
         loadingView.isHidden = false
-        brain.updateData { [self] result in
-            switch result {
-            case let .success((date, rates)):
-                dateOfLastUpdateLabel.text = date
-                converterView.dataSource.objects = rates
-                converterView.tableView.reloadData()
-            case let .failure(error):
-                showErrorAlert(title: nil, message: error.localizedDescription)
-            }
-            loadingView.isHidden = true
-        }
+        brain.updateData()
     }
 
     private func showErrorAlert(title: String?, message: String?) {
@@ -64,6 +54,28 @@ class MainViewController: UIViewController {
 extension MainViewController: CurrencyTableViewDataSourceDelegate {
     func getBaseCurrency(currency: Currency) {
         brain.baseCurrency = currency
+    }
+}
+
+extension MainViewController: TextFieldViewDelegate {
+    func textFieldDidChange(text: String) {
         updateData()
+        brain.baseRate = Double(text) ?? 1
+    }
+}
+
+extension MainViewController: ConverterBrainDelegate {
+    func updateDate(date: Date) {
+        dateOfLastUpdateLabel.text = date.formatted(date: .abbreviated, time: .shortened)
+    }
+
+    func showError(_ error: Error) {
+        showErrorAlert(title: nil, message: error.localizedDescription)
+    }
+
+    func updateRates(rates: [CurrencyRate]) {
+        converterView.dataSource.objects = rates
+        converterView.tableView.reloadData()
+        loadingView.isHidden = true
     }
 }

@@ -22,6 +22,8 @@ struct CodableUserDefault<Value: Codable> {
         }
         set {
             if let newValue = newValue, let data = try? JSONEncoder().encode(newValue) {
+//                let jsonData = try? JSONSerialization.jsonObject(with: data, options: [.mutableLeaves])
+//                print(jsonData)
                 container.set(data, forKey: key)
             } else {
                 container.removeObject(forKey: key)

@@ -31,6 +31,7 @@ extension TextFieldView: UITextFieldDelegate {
 
     @objc func textFieldDidChange(_ textField: CustomTextField) {
         guard let text = textField.text else {return}
+        currentText = text
         switch fieldSettings {
         case .inputLimit:
             txtField.attributedText =  model.changeTextColor(text: text)

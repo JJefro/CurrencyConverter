@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RatesRepositoryProtocol {
-    func fetchRates(currencies: [Currency], completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void)
+    func fetchRates(currency: Currency, completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void)
 }
 
 class DataManager: RatesRepositoryProtocol {
@@ -20,11 +20,11 @@ class DataManager: RatesRepositoryProtocol {
         self.remoteDataSource = remoteDataSource
     }
 
-    func fetchRates(currencies: [Currency], completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void) {
+    func fetchRates(currency: Currency, completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void) {
         if let localRates = localDataSource.rates, localRates.createdAt.isInHourIntervalWithCurrentTime {
             completion(.success(localRates))
         } else {
-            remoteDataSource.fetchRates(currencies: currencies) { [localDataSource] result in
+            remoteDataSource.fetchRates(currency: currency) { [localDataSource] result in
                 switch result.map({ Timestamped(wrappedValue: $0) }) {
                 case let .success(rates):
                     localDataSource.rates = rates

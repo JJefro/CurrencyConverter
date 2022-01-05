@@ -17,11 +17,6 @@ class ConverterView: UIView {
 
     var dataSource = CurrencyTableViewDataSource()
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        configureTableView()
-    }
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundColor = R.color.converterView.backgroundColor()
@@ -72,7 +67,7 @@ class ConverterView: UIView {
     }
 
     // MARK: - UITableView Configurations
-    private func configureTableView() {
+    func configureTableView() {
         tableView.rowHeight = 60
         tableView.separatorStyle = .none
         tableView.backgroundColor = R.color.converterView.backgroundColor()
