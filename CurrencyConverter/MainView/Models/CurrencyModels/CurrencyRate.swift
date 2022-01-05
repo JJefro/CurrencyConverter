@@ -8,7 +8,7 @@
 import Foundation
 
 struct CurrencyRate: Codable, Equatable {
-    let base: Currency
+    var base: Currency
     var currency: Currency
     var locale: String
     var rate: Double

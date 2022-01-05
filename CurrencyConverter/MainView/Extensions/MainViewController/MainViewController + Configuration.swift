@@ -16,11 +16,13 @@ extension MainViewController {
         configureUpdateLabels()
         addTargetsToButtons()
         setLoadingViewConstraints()
+        converterView.configureTableView()
         bind()
     }
 
     func bind() {
         converterView.dataSource.delegate = self
+        brain.delegate = self
     }
 
     // MARK: - Buttons Targets

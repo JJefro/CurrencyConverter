@@ -9,15 +9,27 @@ import UIKit
 import SnapKit
 import SafariServices
 
+protocol TextFieldViewDelegate: AnyObject {
+    func textFieldDidChange(text: String)
+}
+
 class TextFieldView: UIView {
 
     @IBOutlet weak var txtFieldTitle: UILabel!
     @IBOutlet weak var inputLimitScore: UILabel!
     @IBOutlet weak var txtField: CustomTextField!
 
+    weak var delegate: TextFieldViewDelegate?
+
     let nibName = "TextFieldView"
     var contentView: UIView?
     var model = TextFieldModel()
+
+    var currentText: String = "" {
+        didSet {
+            delegate?.textFieldDidChange(text: currentText)
+        }
+    }
 
     var fieldSettings: TextFieldsSettings = .onlyNumbers {
         didSet {
@@ -69,7 +81,7 @@ class TextFieldView: UIView {
             txtFieldTitle.text = fieldSettings.title
             txtField.placeholder = fieldSettings.placeholder
             txtField.autocorrectionType = .no
-            txtField.keyboardType = .decimalPad
+            txtField.keyboardType = .asciiCapableNumberPad
             inputLimitScore.isHidden = true
         case .inputLimit:
             txtFieldTitle.text = fieldSettings.title
@@ -103,7 +115,7 @@ class TextFieldView: UIView {
             txtField.textColor = R.color.textFieldsColors.tfTextColor()
         }
     }
-
+    
     func openLink(_ stringURL: String) {
         guard let url = URL(string: stringURL) else {return}
         let safariVC = SFSafariViewController(url: url)

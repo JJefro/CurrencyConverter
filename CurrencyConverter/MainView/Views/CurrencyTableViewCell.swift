@@ -13,9 +13,10 @@ class CurrencyTableViewCell: UITableViewCell {
     static let identifier = "CurrencyTableViewCell"
 
     private var currencyLabel = UILabel()
-    var textFieldView = TextFieldView()
+    private var textFieldView = TextFieldView()
     private var horizontalStack = UIStackView()
     private var currencyLabelHorizontalStack = UIStackView()
+    private var viewController = MainViewController()
 
     private var chevronRightImageString: UILabel = {
         let imageAttachment = NSTextAttachment()
@@ -36,6 +37,8 @@ class CurrencyTableViewCell: UITableViewCell {
         configureHorizontalStack()
         configureCurrencyLabelHorizontalStack()
         configureCurrencyLabel()
+
+        textFieldView.delegate = viewController
     }
 
     required init?(coder: NSCoder) {

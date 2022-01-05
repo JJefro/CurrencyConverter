@@ -23,8 +23,6 @@ class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let baseCurrency = objects[indexPath.row].currency
-        let cell = tableView.cellForRow(at: indexPath) as! CurrencyTableViewCell
-        print(cell.textFieldView.txtField.text!)
         DispatchQueue.main.async { [self] in
             delegate?.getBaseCurrency(currency: baseCurrency)
         }
