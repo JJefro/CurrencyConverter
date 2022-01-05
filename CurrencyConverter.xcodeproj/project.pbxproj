@@ -64,7 +64,7 @@
 		975742EA276504C9003F8F9E /* CurrencyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyEntity.swift; sourceTree = "<group>"; };
 		976FE819277213FF00441D88 /* ConverterBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterBrain.swift; sourceTree = "<group>"; };
 		976FE81B277280F800441D88 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateButton.swift; sourceTree = "<group>"; };
+		97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExchangeRateButton.swift; path = ../Models/CurrencyModels/ExchangeRateButton.swift; sourceTree = "<group>"; };
 		9775222A27517E6400F2A2B8 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9775222D27517E6400F2A2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9775222F27517E6400F2A2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 		976FE818277213E400441D88 /* CurrencyModels */ = {
 			isa = PBXGroup;
 			children = (
-				97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */,
 				9724293D275F4EA000C042B4 /* CurrencyRate.swift */,
 				9705496827678D1400EF8B45 /* CurrencyData.swift */,
 				97242945275F66EC00C042B4 /* Currency.swift */,
@@ -225,6 +224,7 @@
 				9705BCD2275AC7D800B67DC3 /* ConverterView.swift */,
 				976FE81B277280F800441D88 /* LoadingView.swift */,
 				97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */,
+				97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
