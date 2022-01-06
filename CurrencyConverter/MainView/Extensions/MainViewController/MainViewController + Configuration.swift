@@ -22,6 +22,7 @@ extension MainViewController {
 
     func bind() {
         converterView.dataSource.delegate = self
+//        converterView.cell.textFieldView.delegate = self // Doesn't work
         brain.delegate = self
     }
 

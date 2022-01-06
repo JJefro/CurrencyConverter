@@ -26,6 +26,7 @@
 		9775223727517E6500F2A2B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9775223627517E6500F2A2B8 /* Assets.xcassets */; };
 		9775223A27517E6500F2A2B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9775223827517E6500F2A2B8 /* LaunchScreen.storyboard */; };
 		977A442827653AE00021225A /* LocalizedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977A442727653AE00021225A /* LocalizedCurrency.swift */; };
+		977AD2E02786FB2C0079AFAD /* TextFieldsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977AD2DF2786FB2C0079AFAD /* TextFieldsTests.swift */; };
 		977D16EE276E204B00B8F4D9 /* Timestamped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D16ED276E204B00B8F4D9 /* Timestamped.swift */; };
 		977D16F0276E214000B8F4D9 /* RatesRemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D16EF276E214000B8F4D9 /* RatesRemoteDataSource.swift */; };
 		977D16F2276E229300B8F4D9 /* RatesLocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D16F1276E229300B8F4D9 /* RatesLocalDataSource.swift */; };
@@ -48,6 +49,16 @@
 		97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */; };
 		EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B48ABF179B713DDD51C05B8 /* Pods_CurrencyConverter.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		977AD2E12786FB2C0079AFAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9775222227517E6400F2A2B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9775222927517E6400F2A2B8;
+			remoteInfo = CurrencyConverter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02D216B6A7ED23D50ED3603F /* Pods-CurrencyConverter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CurrencyConverter.debug.xcconfig"; path = "Target Support Files/Pods-CurrencyConverter/Pods-CurrencyConverter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +85,8 @@
 		9775223927517E6500F2A2B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9775223B27517E6500F2A2B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		977A442727653AE00021225A /* LocalizedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedCurrency.swift; sourceTree = "<group>"; };
+		977AD2DD2786FB2C0079AFAD /* TextFieldsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextFieldsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		977AD2DF2786FB2C0079AFAD /* TextFieldsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsTests.swift; sourceTree = "<group>"; };
 		977D16ED276E204B00B8F4D9 /* Timestamped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timestamped.swift; sourceTree = "<group>"; };
 		977D16EF276E214000B8F4D9 /* RatesRemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesRemoteDataSource.swift; sourceTree = "<group>"; };
 		977D16F1276E229300B8F4D9 /* RatesLocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesLocalDataSource.swift; sourceTree = "<group>"; };
@@ -102,6 +115,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		977AD2DA2786FB2C0079AFAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				9775222C27517E6400F2A2B8 /* CurrencyConverter */,
+				977AD2DE2786FB2C0079AFAD /* CurrencyConverterTests */,
 				9775222B27517E6400F2A2B8 /* Products */,
 				DAEC641E8BE82C66BC6746FF /* Pods */,
 				3513FF6AF9BB5C51C1909C25 /* Frameworks */,
@@ -168,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				9775222A27517E6400F2A2B8 /* CurrencyConverter.app */,
+				977AD2DD2786FB2C0079AFAD /* TextFieldsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -240,6 +262,22 @@
 				9775224127517E8500F2A2B8 /* Controller */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		977AD2DE2786FB2C0079AFAD /* CurrencyConverterTests */ = {
+			isa = PBXGroup;
+			children = (
+				977AD2E62786FD470079AFAD /* TextFieldsTests */,
+			);
+			path = CurrencyConverterTests;
+			sourceTree = "<group>";
+		};
+		977AD2E62786FD470079AFAD /* TextFieldsTests */ = {
+			isa = PBXGroup;
+			children = (
+				977AD2DF2786FB2C0079AFAD /* TextFieldsTests.swift */,
+			);
+			path = TextFieldsTests;
 			sourceTree = "<group>";
 		};
 		977D16F3276E23E600B8F4D9 /* Extensions */ = {
@@ -408,6 +446,24 @@
 			productReference = 9775222A27517E6400F2A2B8 /* CurrencyConverter.app */;
 			productType = "com.apple.product-type.application";
 		};
+		977AD2DC2786FB2C0079AFAD /* TextFieldsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 977AD2E52786FB2C0079AFAD /* Build configuration list for PBXNativeTarget "TextFieldsTests" */;
+			buildPhases = (
+				977AD2D92786FB2C0079AFAD /* Sources */,
+				977AD2DA2786FB2C0079AFAD /* Frameworks */,
+				977AD2DB2786FB2C0079AFAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				977AD2E22786FB2C0079AFAD /* PBXTargetDependency */,
+			);
+			name = TextFieldsTests;
+			productName = TextFieldsTests;
+			productReference = 977AD2DD2786FB2C0079AFAD /* TextFieldsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -415,11 +471,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					9775222927517E6400F2A2B8 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					977AD2DC2786FB2C0079AFAD = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 9775222927517E6400F2A2B8;
 					};
 				};
 			};
@@ -439,6 +499,7 @@
 			projectRoot = "";
 			targets = (
 				9775222927517E6400F2A2B8 /* CurrencyConverter */,
+				977AD2DC2786FB2C0079AFAD /* TextFieldsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -456,6 +517,13 @@
 				97B0855E275615D3000035CA /* TextFieldView.xib in Resources */,
 				97B0854D2756116C000035CA /* SF-Pro-Display-Regular.otf in Resources */,
 				9775223527517E6400F2A2B8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		977AD2DB2786FB2C0079AFAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -581,7 +649,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		977AD2D92786FB2C0079AFAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				977AD2E02786FB2C0079AFAD /* TextFieldsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		977AD2E22786FB2C0079AFAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9775222927517E6400F2A2B8 /* CurrencyConverter */;
+			targetProxy = 977AD2E12786FB2C0079AFAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9775223327517E6400F2A2B8 /* Main.storyboard */ = {
@@ -785,6 +869,44 @@
 			};
 			name = Release;
 		};
+		977AD2E32786FB2C0079AFAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 334HNT23HZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jevgenijsjefrosinins.TextFieldsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurrencyConverter.app/CurrencyConverter";
+			};
+			name = Debug;
+		};
+		977AD2E42786FB2C0079AFAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 334HNT23HZ;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jevgenijsjefrosinins.TextFieldsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurrencyConverter.app/CurrencyConverter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -802,6 +924,15 @@
 			buildConfigurations = (
 				9775223F27517E6500F2A2B8 /* Debug */,
 				9775224027517E6500F2A2B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		977AD2E52786FB2C0079AFAD /* Build configuration list for PBXNativeTarget "TextFieldsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				977AD2E32786FB2C0079AFAD /* Debug */,
+				977AD2E42786FB2C0079AFAD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

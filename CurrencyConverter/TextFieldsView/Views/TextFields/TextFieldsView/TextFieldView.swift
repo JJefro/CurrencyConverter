@@ -81,7 +81,7 @@ class TextFieldView: UIView {
             txtFieldTitle.text = fieldSettings.title
             txtField.placeholder = fieldSettings.placeholder
             txtField.autocorrectionType = .no
-            txtField.keyboardType = .asciiCapableNumberPad
+            txtField.keyboardType = .decimalPad
             inputLimitScore.isHidden = true
         case .inputLimit:
             txtFieldTitle.text = fieldSettings.title

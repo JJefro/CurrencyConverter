@@ -59,7 +59,6 @@ extension MainViewController: CurrencyTableViewDataSourceDelegate {
 
 extension MainViewController: TextFieldViewDelegate {
     func textFieldDidChange(text: String) {
-        updateData()
         brain.baseRate = Double(text) ?? 1
     }
 }
