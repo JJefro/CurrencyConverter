@@ -7,8 +7,6 @@
 
 import Foundation
 
-typealias CompletionHandler = (Result<(String, [CurrencyRate]), Error>) -> Void
-
 protocol ConverterBrainDelegate: AnyObject {
     func updateRates(rates: [CurrencyRate])
     func updateDate(date: Date)
@@ -34,12 +32,6 @@ class ConverterBrain: ConverterBrainProtocol {
         self.repository = repository
     }
 
-    var baseCurrency: Currency = .init(rawValue: "EUR") {
-        didSet {
-            changeBaseCurrency()
-        }
-    }
-
     var currentCurrencies: [Currency] = [Currency(rawValue: "USD"), Currency(rawValue: "EUR"), Currency(rawValue: "RUB"), Currency(rawValue: "CNY")]
 
     var currentRates: [CurrencyRate] = [] {
@@ -48,20 +40,27 @@ class ConverterBrain: ConverterBrainProtocol {
         }
     }
 
+    var baseCurrency: Currency = .init(rawValue: "EUR") {
+        didSet {
+            changeBaseCurrency()
+        }
+    }
+
     var baseRate: Double = 1 {
         didSet {
+            print(baseRate)
             convertRates()
         }
     }
 
     func updateData() {
-        repository.fetchRates(currency: requestedBaseCurrency) { [self] result in
+        repository.fetchRates(currency: requestedBaseCurrency) { result in
             switch result {
             case let .success(rates):
-                currentRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
-                delegate?.updateDate(date: rates.createdAt)
+                self.currentRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
+                self.delegate?.updateDate(date: rates.createdAt)
             case let .failure(error):
-                delegate?.showError(error)
+                self.delegate?.showError(error)
             }
         }
     }

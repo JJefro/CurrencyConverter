@@ -9,6 +9,8 @@ import UIKit
 
 class TextFieldModel {
 
+    var replacementString = String()
+
     // MARK: - noDigitsField
     func ignoreDigits(replacementString string: String) -> Bool {
         return string.isEmpty || !string.contains(where: { $0.isNumber })
@@ -20,8 +22,12 @@ class TextFieldModel {
     }
 
     // MARK: - onlyNumbersField
-    func allowOnlyNumbers(replacementString string: String) -> Bool {
-        return string.isEmpty || string.contains(where: { $0.isNumber }) || string.contains(where: { $0.isPunctuation })
+
+    func allowOnlyNumbers(replacementString string: String, text: String) -> Bool {
+        if text.contains(".") {
+            return string.isEmpty || string.contains(where: { $0.isNumber })
+        }
+        return string.isEmpty || string.contains(where: { $0.isNumber }) || string.contains(where: { $0 == "." })
     }
 
     // MARK: - inputLimitField

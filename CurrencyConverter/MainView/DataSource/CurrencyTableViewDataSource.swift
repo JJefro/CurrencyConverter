@@ -15,7 +15,7 @@ class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
 
     var objects: [CurrencyRate] = []
     weak var delegate: CurrencyTableViewDataSourceDelegate?
-
+    
     // MARK: - UITableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         objects.count
@@ -23,9 +23,7 @@ class CurrencyTableViewDataSource: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let baseCurrency = objects[indexPath.row].currency
-        DispatchQueue.main.async { [self] in
-            delegate?.getBaseCurrency(currency: baseCurrency)
-        }
+        delegate?.getBaseCurrency(currency: baseCurrency)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

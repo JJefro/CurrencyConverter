@@ -31,8 +31,15 @@ extension TextFieldView: UITextFieldDelegate {
 
     @objc func textFieldDidChange(_ textField: CustomTextField) {
         guard let text = textField.text else {return}
-        currentText = text
         switch fieldSettings {
+        case .onlyNumbers:
+            let startIndex = textField.text!.startIndex
+            if text.first == "." {
+                textField.text!.insert("0", at: startIndex)
+            }
+            if text.first == "0", !text.contains("."), !model.replacementString.isEmpty {
+                textField.text!.insert(".", at: textField.text!.index(after: startIndex))
+            }
         case .inputLimit:
             txtField.attributedText =  model.changeTextColor(text: text)
         case .onlyCharacters:
@@ -41,6 +48,7 @@ extension TextFieldView: UITextFieldDelegate {
             }
         default: break
         }
+        currentText = text
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -50,13 +58,15 @@ extension TextFieldView: UITextFieldDelegate {
         guard let textRange = Range(range, in: text) else {return false}
         let currentText = text.replacingCharacters(in: textRange, with: string)
 
+        model.replacementString = string
+
         switch fieldSettings {
         case .noDigits:
             return model.ignoreDigits(replacementString: string)
         case .onlyLetters:
             return model.allowOnlyLetters(replacementString: string)
         case .onlyNumbers:
-            return model.allowOnlyNumbers(replacementString: string)
+            return model.allowOnlyNumbers(replacementString: string, text: text)
         case .inputLimit:
             inputLimitScore.text = String(model.updateLimitInput(length: textLength))
             updateLimitedInputFieldColor()
