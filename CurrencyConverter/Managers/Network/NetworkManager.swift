@@ -29,29 +29,23 @@ class NetworkManager: NetworkManagerProtocol {
     private var networkRequestCompletion: (RequestCompletion)?
 
     func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
+        var urlComponents = components
         let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
-        components.queryItems?.append(baseCurrencyItemQuery)
-        performRequest(url: components.url) { result in
-            self.removeUsedComponents()
+        urlComponents.queryItems?.append(baseCurrencyItemQuery)
+        performRequest(url: urlComponents.url) { result in
             completion(result)
         }
     }
 
     func getHistoricalCurrencyRates(fromDate: String, toDate: String, baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {
+        var urlComponents = components
         let baseCurrencyItemQuery = URLQueryItem(name: "base_currency", value: baseCurrency.rawValue)
         let dateFromItemQuery = URLQueryItem(name: "date_from", value: fromDate)
         let toDateItemQuery = URLQueryItem(name: "date_to", value: toDate)
-        components.queryItems?.append(contentsOf: [baseCurrencyItemQuery, dateFromItemQuery, toDateItemQuery])
-        performRequest(url: components.url) { result in
-            self.removeUsedComponents()
+        urlComponents.queryItems?.append(contentsOf: [baseCurrencyItemQuery, dateFromItemQuery, toDateItemQuery])
+        performRequest(url: urlComponents.url) { result in
             completion(result)
         }
-    }
-
-    private func removeUsedComponents() {
-        components.queryItems?.removeAll(where: { $0.name == "base_currency" })
-        components.queryItems?.removeAll(where: { $0.name == "date_from" })
-        components.queryItems?.removeAll(where: { $0.name == "date_to" })
     }
 
     private func performRequest(url: URL?, completion: @escaping RequestCompletion) {

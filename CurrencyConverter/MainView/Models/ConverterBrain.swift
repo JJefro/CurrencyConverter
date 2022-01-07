@@ -8,9 +8,10 @@
 import Foundation
 
 protocol ConverterBrainDelegate: AnyObject {
-    func updateRates(rates: [CurrencyRate])
-    func updateDate(date: Date)
-    func showError(_ error: Error)
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateRates rates: [CurrencyRate])
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateDate date: Date)
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, errorOccured error: Error)
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateLoading isLoading: Bool)
 }
 
 protocol ConverterBrainProtocol {
@@ -36,7 +37,7 @@ class ConverterBrain: ConverterBrainProtocol {
 
     var currentRates: [CurrencyRate] = [] {
         didSet {
-            delegate?.updateRates(rates: currentRates)
+            delegate?.converterBrain(self, didUpdateRates: currentRates)
         }
     }
 
@@ -54,14 +55,16 @@ class ConverterBrain: ConverterBrainProtocol {
     }
 
     func updateData() {
+        delegate?.converterBrain(self, didUpdateLoading: true)
         repository.fetchRates(currency: requestedBaseCurrency) { result in
             switch result {
             case let .success(rates):
                 self.currentRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
-                self.delegate?.updateDate(date: rates.createdAt)
+                self.delegate?.converterBrain(self, didUpdateDate: rates.createdAt)
             case let .failure(error):
-                self.delegate?.showError(error)
+                self.delegate?.converterBrain(self, errorOccured: error)
             }
+            self.delegate?.converterBrain(self, didUpdateLoading: false)
         }
     }
 

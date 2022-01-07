@@ -32,7 +32,7 @@ extension MainViewController {
         converterView.segmentedControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
         converterView.shareButton.addTarget(self, action: #selector(shareButtonPressed(_:)), for: .touchUpInside)
         
-        updatingExchangeRateButton.addTarget(self, action: #selector(updatingExchangeRateButtonPressed(_:)), for: .touchUpInside)
+        updatingExchangeRateButton.addTarget(self, action: #selector(exchangeRateButtonPressed(_:)), for: .touchUpInside)
     }
 
     private func setLoadingViewConstraints() {

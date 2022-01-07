@@ -29,17 +29,11 @@ extension TextFieldView: UITextFieldDelegate {
         }
     }
 
-    @objc func textFieldDidChange(_ textField: CustomTextField) {
+    @objc func textFieldEditingChanged(_ textField: CustomTextField) {
         guard let text = textField.text else {return}
         switch fieldSettings {
         case .onlyNumbers:
-            let startIndex = textField.text!.startIndex
-            if text.first == "." {
-                textField.text!.insert("0", at: startIndex)
-            }
-            if text.first == "0", !text.contains("."), !model.replacementString.isEmpty {
-                textField.text!.insert(".", at: textField.text!.index(after: startIndex))
-            }
+            textField.text = model.handleTextFieldInput(text: text)
         case .inputLimit:
             txtField.attributedText =  model.changeTextColor(text: text)
         case .onlyCharacters:
