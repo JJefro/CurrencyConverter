@@ -22,12 +22,23 @@ class TextFieldModel {
     }
 
     // MARK: - onlyNumbersField
-
     func allowOnlyNumbers(replacementString string: String, text: String) -> Bool {
         if text.contains(".") {
             return string.isEmpty || string.contains(where: { $0.isNumber })
         }
         return string.isEmpty || string.contains(where: { $0.isNumber }) || string.contains(where: { $0 == "." })
+    }
+
+    func handleTextFieldInput(text: String) -> String {
+        var currentText = text
+        let startIndex = currentText.startIndex
+        if currentText.first == "." {
+            currentText.insert("0", at: startIndex)
+        }
+        if currentText.first == "0", !currentText.contains("."), !replacementString.isEmpty {
+            currentText.insert(".", at: currentText.index(after: startIndex))
+        }
+        return currentText
     }
 
     // MARK: - inputLimitField

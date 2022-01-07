@@ -10,7 +10,7 @@ import SnapKit
 import SafariServices
 
 protocol TextFieldViewDelegate: AnyObject {
-    func textFieldDidChange(text: String)
+    func textFieldView(_ textFieldView: TextFieldView, textFieldEditingChanged text: String)
 }
 
 class TextFieldView: UIView {
@@ -27,7 +27,7 @@ class TextFieldView: UIView {
 
     var currentText: String = "" {
         didSet {
-            delegate?.textFieldDidChange(text: currentText)
+            delegate?.textFieldView(self, textFieldEditingChanged: currentText)
         }
     }
 
@@ -54,7 +54,7 @@ class TextFieldView: UIView {
     private func commonInit() {
         txtField.delegate = self
         txtField.returnKeyType = .done
-        txtField.addTarget(self, action: #selector(TextFieldView.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        txtField.addTarget(self, action: #selector(TextFieldView.textFieldEditingChanged(_:)), for: UIControl.Event.editingChanged)
     }
 
     private func loadViewFromNib() -> UIView? {

@@ -46,7 +46,7 @@
 		97B0856427561A0D000035CA /* TextFieldsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856327561A0D000035CA /* TextFieldsSettings.swift */; };
 		97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */; };
 		97D50E972769E9DA00BC29BF /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D50E962769E9DA00BC29BF /* DataManager.swift */; };
-		97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */; };
+		97DE850D275D521B007BF4A5 /* TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE850C275D521B007BF4A5 /* TableViewDataSource.swift */; };
 		EC2198B61D9BD3A126038F30 /* Pods_CurrencyConverter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B48ABF179B713DDD51C05B8 /* Pods_CurrencyConverter.framework */; };
 /* End PBXBuildFile section */
 
@@ -106,7 +106,7 @@
 		97B0856327561A0D000035CA /* TextFieldsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsSettings.swift; sourceTree = "<group>"; };
 		97B0856827561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextFieldsView + UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		97D50E962769E9DA00BC29BF /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewDataSource.swift; sourceTree = "<group>"; };
+		97DE850C275D521B007BF4A5 /* TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,7 +406,7 @@
 		97DE850B275D51F7007BF4A5 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				97DE850C275D521B007BF4A5 /* CurrencyTableViewDataSource.swift */,
+				97DE850C275D521B007BF4A5 /* TableViewDataSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -632,7 +632,7 @@
 				9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */,
 				97B0854F275611AC000035CA /* R.generated.swift in Sources */,
 				97242946275F66EC00C042B4 /* Currency.swift in Sources */,
-				97DE850D275D521B007BF4A5 /* CurrencyTableViewDataSource.swift in Sources */,
+				97DE850D275D521B007BF4A5 /* TableViewDataSource.swift in Sources */,
 				97B0856927561B1D000035CA /* TextFieldsView + UITextFieldDelegate.swift in Sources */,
 				97A4C76B275CFC600042E123 /* CardButton.swift in Sources */,
 				977D16F0276E214000B8F4D9 /* RatesRemoteDataSource.swift in Sources */,

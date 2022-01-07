@@ -35,12 +35,11 @@ class MainViewController: UIViewController {
         print(brain.currentRates)
     }
 
-    @objc func updatingExchangeRateButtonPressed(_ sender: UIButton) {
+    @objc func exchangeRateButtonPressed(_ sender: UIButton) {
         updateData()
     }
 
     private func updateData() {
-        loadingView.isHidden = false
         brain.updateData()
     }
 
@@ -51,30 +50,33 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: CurrencyTableViewDataSourceDelegate {
-    func getBaseCurrency(currency: Currency) {
+extension MainViewController: TableViewDataSourceDelegate {
+    func tableViewDataSource(_ currencyTableViewDataSource: TableViewDataSource, didChangeBaseCurrency currency: Currency) {
         brain.baseCurrency = currency
     }
 }
 
 extension MainViewController: TextFieldViewDelegate {
-    func textFieldDidChange(text: String) {
+    func textFieldView(_ textFieldView: TextFieldView, textFieldEditingChanged text: String) {
         brain.baseRate = Double(text) ?? 1
     }
 }
 
 extension MainViewController: ConverterBrainDelegate {
-    func updateDate(date: Date) {
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateRates rates: [CurrencyRate]) {
+        converterView.dataSource.objects = rates
+        converterView.tableView.reloadData()
+    }
+
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateDate date: Date) {
         dateOfLastUpdateLabel.text = date.formatted(date: .abbreviated, time: .shortened)
     }
 
-    func showError(_ error: Error) {
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, errorOccured error: Error) {
         showErrorAlert(title: nil, message: error.localizedDescription)
     }
 
-    func updateRates(rates: [CurrencyRate]) {
-        converterView.dataSource.objects = rates
-        converterView.tableView.reloadData()
-        loadingView.isHidden = true
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateLoading isLoading: Bool) {
+        loadingView.isHidden = !isLoading
     }
 }

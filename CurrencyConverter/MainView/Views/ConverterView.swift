@@ -15,7 +15,7 @@ class ConverterView: UIView {
     var addCurrencyButton = CardButton()
     var shareButton = CardButton()
 
-    var dataSource = CurrencyTableViewDataSource()
+    var dataSource = TableViewDataSource()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
