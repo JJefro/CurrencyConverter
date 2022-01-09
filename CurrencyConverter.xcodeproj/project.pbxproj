@@ -33,7 +33,7 @@
 		977D16F5276E23FF00B8F4D9 /* Date+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D16F4276E23FF00B8F4D9 /* Date+Comparison.swift */; };
 		977D16F8276E24A200B8F4D9 /* CodableUserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977D16F7276E24A200B8F4D9 /* CodableUserDefault.swift */; };
 		97A4C76B275CFC600042E123 /* CardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76A275CFC600042E123 /* CardButton.swift */; };
-		97A4C76D275CFD1B0042E123 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */; };
+		97A4C76D275CFD1B0042E123 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76C275CFD1B0042E123 /* TableViewCell.swift */; };
 		97B0854827561041000035CA /* MainViewController + Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0854727561041000035CA /* MainViewController + Configuration.swift */; };
 		97B0854C2756116C000035CA /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */; };
 		97B0854D2756116C000035CA /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */; };
@@ -93,7 +93,7 @@
 		977D16F4276E23FF00B8F4D9 /* Date+Comparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Comparison.swift"; sourceTree = "<group>"; };
 		977D16F7276E24A200B8F4D9 /* CodableUserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableUserDefault.swift; sourceTree = "<group>"; };
 		97A4C76A275CFC600042E123 /* CardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButton.swift; sourceTree = "<group>"; };
-		97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		97A4C76C275CFD1B0042E123 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		97B0854727561041000035CA /* MainViewController + Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + Configuration.swift"; sourceTree = "<group>"; };
 		97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -245,7 +245,7 @@
 				9775223327517E6400F2A2B8 /* Main.storyboard */,
 				9705BCD2275AC7D800B67DC3 /* ConverterView.swift */,
 				976FE81B277280F800441D88 /* LoadingView.swift */,
-				97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */,
+				97A4C76C275CFD1B0042E123 /* TableViewCell.swift */,
 				97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */,
 			);
 			path = Views;
@@ -641,7 +641,7 @@
 				97B0856427561A0D000035CA /* TextFieldsSettings.swift in Sources */,
 				977D16F5276E23FF00B8F4D9 /* Date+Comparison.swift in Sources */,
 				977A442827653AE00021225A /* LocalizedCurrency.swift in Sources */,
-				97A4C76D275CFD1B0042E123 /* CurrencyTableViewCell.swift in Sources */,
+				97A4C76D275CFD1B0042E123 /* TableViewCell.swift in Sources */,
 				9775223027517E6400F2A2B8 /* SceneDelegate.swift in Sources */,
 				977D16F2276E229300B8F4D9 /* RatesLocalDataSource.swift in Sources */,
 				976FE81C277280F800441D88 /* LoadingView.swift in Sources */,

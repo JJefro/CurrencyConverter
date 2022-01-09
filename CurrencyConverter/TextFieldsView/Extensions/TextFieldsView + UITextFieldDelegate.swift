@@ -42,7 +42,6 @@ extension TextFieldView: UITextFieldDelegate {
             }
         default: break
         }
-        currentText = text
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

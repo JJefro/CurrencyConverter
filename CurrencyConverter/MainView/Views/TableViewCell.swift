@@ -8,25 +8,21 @@
 import UIKit
 import SnapKit
 
-class CurrencyTableViewCell: UITableViewCell {
+protocol TableViewCellDelegate: AnyObject {
+    func tableViewCell(_ tableViewCell: TableViewCell, textFieldEditingChanged text: String)
+}
+
+class TableViewCell: UITableViewCell {
 
     static let identifier = "CurrencyTableViewCell"
+
+    weak var delegate: TableViewCellDelegate?
 
     private var currencyLabel = UILabel()
     private var horizontalStack = UIStackView()
     private var currencyLabelHorizontalStack = UIStackView()
 
     var textFieldView = TextFieldView()
-
-//    let viewController = MainViewController()
-
-    private var chevronRightImageString: UILabel = {
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: "chevron.right")
-        let text = UILabel()
-        text.attributedText = NSAttributedString(attachment: imageAttachment)
-        return text
-    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,11 +36,25 @@ class CurrencyTableViewCell: UITableViewCell {
         configureCurrencyLabelHorizontalStack()
         configureCurrencyLabel()
 
-//        textFieldView.delegate = viewController // Doesn't work correctly
+        textFieldView.txtField.addTarget(self, action: #selector(textFieldEditingChanged(_:)), for: .editingChanged)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private var chevronRightImageString: UILabel = {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: "chevron.right")
+        let text = UILabel()
+        text.attributedText = NSAttributedString(attachment: imageAttachment)
+        return text
+    }()
+
+    @objc private func textFieldEditingChanged(_ sender: UITextField) {
+        if let text = sender.text {
+            delegate?.tableViewCell(self, textFieldEditingChanged: text)
+        }
     }
 
     func set(currency: CurrencyRate) {

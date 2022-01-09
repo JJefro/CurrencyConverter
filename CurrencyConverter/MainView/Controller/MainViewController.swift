@@ -32,7 +32,6 @@ class MainViewController: UIViewController {
     }
 
     @objc func shareButtonPressed(_ sender: UIButton) {
-        print(brain.currentRates)
     }
 
     @objc func exchangeRateButtonPressed(_ sender: UIButton) {
@@ -51,18 +50,18 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: TableViewDataSourceDelegate {
+
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, textFieldEditingChanged text: String) {
+        brain.baseRate = Double(text) ?? 1
+    }
+
     func tableViewDataSource(_ currencyTableViewDataSource: TableViewDataSource, didChangeBaseCurrency currency: Currency) {
         brain.baseCurrency = currency
     }
 }
 
-extension MainViewController: TextFieldViewDelegate {
-    func textFieldView(_ textFieldView: TextFieldView, textFieldEditingChanged text: String) {
-        brain.baseRate = Double(text) ?? 1
-    }
-}
-
 extension MainViewController: ConverterBrainDelegate {
+    
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateRates rates: [CurrencyRate]) {
         converterView.dataSource.objects = rates
         converterView.tableView.reloadData()

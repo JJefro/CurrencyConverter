@@ -9,27 +9,15 @@ import UIKit
 import SnapKit
 import SafariServices
 
-protocol TextFieldViewDelegate: AnyObject {
-    func textFieldView(_ textFieldView: TextFieldView, textFieldEditingChanged text: String)
-}
-
 class TextFieldView: UIView {
 
     @IBOutlet weak var txtFieldTitle: UILabel!
     @IBOutlet weak var inputLimitScore: UILabel!
     @IBOutlet weak var txtField: CustomTextField!
 
-    weak var delegate: TextFieldViewDelegate?
-
     let nibName = "TextFieldView"
     var contentView: UIView?
     var model = TextFieldModel()
-
-    var currentText: String = "" {
-        didSet {
-            delegate?.textFieldView(self, textFieldEditingChanged: currentText)
-        }
-    }
 
     var fieldSettings: TextFieldsSettings = .onlyNumbers {
         didSet {
