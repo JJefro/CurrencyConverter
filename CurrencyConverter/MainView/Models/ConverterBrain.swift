@@ -35,6 +35,8 @@ class ConverterBrain: ConverterBrainProtocol {
 
     var currentCurrencies: [Currency] = [Currency(rawValue: "USD"), Currency(rawValue: "EUR"), Currency(rawValue: "RUB"), Currency(rawValue: "CNY")]
 
+    var fetchedRates: [CurrencyRate] = []
+
     var currentRates: [CurrencyRate] = [] {
         didSet {
             delegate?.converterBrain(self, didUpdateRates: currentRates)
@@ -43,13 +45,12 @@ class ConverterBrain: ConverterBrainProtocol {
 
     var baseCurrency: Currency = .init(rawValue: "EUR") {
         didSet {
-            changeBaseCurrency()
+            setBaseCurrency()
         }
     }
 
     var baseRate: Double = 1 {
         didSet {
-            print(baseRate)
             convertRates()
         }
     }
@@ -59,7 +60,8 @@ class ConverterBrain: ConverterBrainProtocol {
         repository.fetchRates(currency: requestedBaseCurrency) { result in
             switch result {
             case let .success(rates):
-                self.currentRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
+                self.fetchedRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
+                self.currentRates = self.fetchedRates
                 self.delegate?.converterBrain(self, didUpdateDate: rates.createdAt)
             case let .failure(error):
                 self.delegate?.converterBrain(self, errorOccured: error)
@@ -69,17 +71,24 @@ class ConverterBrain: ConverterBrainProtocol {
     }
 
     private func convertRates() {
-        var rates = currentRates
+        let currencyRates = fetchedRates
+        var rates = updateBaseCurrency(rates: currencyRates)
         rates.indices.forEach {
             if rates[$0].currency != baseCurrency {
                 rates[$0].rate *= baseRate
+            } else {
+                rates[$0].rate = baseRate
             }
         }
         currentRates = rates
     }
 
-    private func changeBaseCurrency() {
-        var rates = currentRates
+    private func setBaseCurrency() {
+        currentRates = updateBaseCurrency(rates: currentRates)
+    }
+
+    private func updateBaseCurrency(rates currencyRates: [CurrencyRate]) -> [CurrencyRate] {
+        var rates = currencyRates
         let currentBaseRate = rates.first {$0.currency == baseCurrency}!.rate
         rates.indices.forEach {
             let currentRate = rates[$0].rate
@@ -90,6 +99,6 @@ class ConverterBrain: ConverterBrainProtocol {
                 rates[$0].rate = currentRate / currentBaseRate
             }
         }
-        currentRates = rates
+        return rates
     }
 }

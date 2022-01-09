@@ -72,7 +72,7 @@ class ConverterView: UIView {
         tableView.separatorStyle = .none
         tableView.backgroundColor = R.color.converterView.backgroundColor()
 
-        tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
         setTableViewConstraints()
     }
 

@@ -9,6 +9,7 @@ import UIKit
 
 protocol TableViewDataSourceDelegate: AnyObject {
     func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didChangeBaseCurrency currency: Currency)
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, textFieldEditingChanged text: String)
 }
 
 class TableViewDataSource: NSObject, UITableViewDelegate {
@@ -32,10 +33,17 @@ extension TableViewDataSource: UITableViewDataSource {
 
     // MARK: - UITableView Data Source Methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyTableViewCell.identifier) as! CurrencyTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier) as! TableViewCell
+        cell.delegate = self
         let object = objects[indexPath.row]
         cell.set(currency: object)
         cell.selectionStyle = .none
         return cell
+    }
+}
+
+extension TableViewDataSource: TableViewCellDelegate {
+    func tableViewCell(_ tableViewCell: TableViewCell, textFieldEditingChanged text: String) {
+        delegate?.tableViewDataSource(self, textFieldEditingChanged: text)
     }
 }
