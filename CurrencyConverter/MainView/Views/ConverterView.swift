@@ -17,6 +17,24 @@ class ConverterView: UIView {
 
     var dataSource = TableViewDataSource()
 
+    var objects: [CurrencyExchangeData] {
+        get { dataSource.objects }
+        set {
+            let shouldReload = dataSource.objects.count != newValue.count
+            dataSource.objects = newValue
+            if shouldReload {
+                tableView.reloadData()
+            } else {
+                var indexPathsNeedToReload: [IndexPath] = []
+                for cell in tableView.visibleCells {
+                    guard let indexPath = tableView.indexPath(for: cell) else { continue }
+                    if (cell as? CurrencyTableViewCell)?.isFirstResponder == false { indexPathsNeedToReload.append(indexPath) }
+                }
+                tableView.reloadRows(at: indexPathsNeedToReload, with: .none)
+            }
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         backgroundColor = R.color.converterView.backgroundColor()
@@ -72,7 +90,7 @@ class ConverterView: UIView {
         tableView.separatorStyle = .none
         tableView.backgroundColor = R.color.converterView.backgroundColor()
 
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
+        tableView.register(CurrencyTableViewCell.self, forCellReuseIdentifier: CurrencyTableViewCell.identifier)
         setTableViewConstraints()
     }
 

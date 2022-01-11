@@ -18,6 +18,7 @@ class MainViewController: UIViewController {
                                                             localDataSource: RatesLocalDataSource(),
                                                             remoteDataSource: RatesRemoteDataSource(networkManager: NetworkManager())))
     var loadingView = LoadingView()
+    private var selectedIndexPath = IndexPath()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +40,7 @@ class MainViewController: UIViewController {
     }
 
     private func updateData() {
-        brain.updateData()
+        brain.updateCurrencyRates()
     }
 
     private func showErrorAlert(title: String?, message: String?) {
@@ -50,21 +51,15 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: TableViewDataSourceDelegate {
-
-    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, textFieldEditingChanged text: String) {
-        brain.baseRate = Double(text) ?? 1
-    }
-
-    func tableViewDataSource(_ currencyTableViewDataSource: TableViewDataSource, didChangeBaseCurrency currency: Currency) {
-        brain.baseCurrency = currency
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyValueDidChange text: String, for currency: Currency) {
+        brain.calculateRates(value: text, currency: currency)
     }
 }
 
 extension MainViewController: ConverterBrainDelegate {
-    
-    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateRates rates: [CurrencyRate]) {
-        converterView.dataSource.objects = rates
-        converterView.tableView.reloadData()
+
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didConvertRates rates: [CurrencyExchangeData]) {
+        converterView.objects = rates
     }
 
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateDate date: Date) {

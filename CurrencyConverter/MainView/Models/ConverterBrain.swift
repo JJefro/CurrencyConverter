@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ConverterBrainDelegate: AnyObject {
-    func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateRates rates: [CurrencyRate])
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didConvertRates rates: [CurrencyExchangeData])
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateDate date: Date)
     func converterBrain(_ converterBrain: ConverterBrainProtocol, errorOccured error: Error)
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateLoading isLoading: Bool)
@@ -16,11 +16,23 @@ protocol ConverterBrainDelegate: AnyObject {
 
 protocol ConverterBrainProtocol {
     var delegate: ConverterBrainDelegate? { get set }
-    var baseCurrency: Currency { get set }
-    var baseRate: Double { get set }
-    var currentRates: [CurrencyRate] { get set }
+    var currentRates: [CurrencyExchangeData] { get set }
 
-    func updateData()
+    func updateCurrencyRates()
+    func calculateRates(value: String, currency: Currency)
+}
+
+struct CurrencyExchangeData {
+    let currency: Currency
+    let rate: Double
+    var exchangeValue: Double?
+
+    var exchangeValueString: String? {
+        if let value = exchangeValue {
+            return String(format: "%.2f", value)
+        }
+        return nil
+    }
 }
 
 class ConverterBrain: ConverterBrainProtocol {
@@ -28,6 +40,7 @@ class ConverterBrain: ConverterBrainProtocol {
     weak var delegate: ConverterBrainDelegate?
     private let repository: RatesRepositoryProtocol
     private let requestedBaseCurrency = Currency.init(rawValue: "EUR")
+    private var fetchedRates: [CurrencyRate] = []
 
     init(repository: RatesRepositoryProtocol) {
         self.repository = repository
@@ -35,33 +48,19 @@ class ConverterBrain: ConverterBrainProtocol {
 
     var currentCurrencies: [Currency] = [Currency(rawValue: "USD"), Currency(rawValue: "EUR"), Currency(rawValue: "RUB"), Currency(rawValue: "CNY")]
 
-    var fetchedRates: [CurrencyRate] = []
-
-    var currentRates: [CurrencyRate] = [] {
+    var currentRates: [CurrencyExchangeData] = [] {
         didSet {
-            delegate?.converterBrain(self, didUpdateRates: currentRates)
+            delegate?.converterBrain(self, didConvertRates: currentRates)
         }
     }
 
-    var baseCurrency: Currency = .init(rawValue: "EUR") {
-        didSet {
-            setBaseCurrency()
-        }
-    }
-
-    var baseRate: Double = 1 {
-        didSet {
-            convertRates()
-        }
-    }
-
-    func updateData() {
+    func updateCurrencyRates() {
         delegate?.converterBrain(self, didUpdateLoading: true)
         repository.fetchRates(currency: requestedBaseCurrency) { result in
             switch result {
             case let .success(rates):
                 self.fetchedRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
-                self.currentRates = self.fetchedRates
+                self.currentRates = self.fetchedRates.map { CurrencyExchangeData(currency: $0.currency, rate: $0.rate) }
                 self.delegate?.converterBrain(self, didUpdateDate: rates.createdAt)
             case let .failure(error):
                 self.delegate?.converterBrain(self, errorOccured: error)
@@ -70,35 +69,17 @@ class ConverterBrain: ConverterBrainProtocol {
         }
     }
 
-    private func convertRates() {
-        let currencyRates = fetchedRates
-        var rates = updateBaseCurrency(rates: currencyRates)
-        rates.indices.forEach {
-            if rates[$0].currency != baseCurrency {
-                rates[$0].rate *= baseRate
+    func calculateRates(value: String, currency: Currency) {
+        guard let currencyRate = fetchedRates.first(where: { $0.currency == currency }) else { return }
+        let value = Double(value)
+        currentRates = currentRates.map {
+            var rate = $0
+            if rate.currency == currency {
+                rate.exchangeValue = value
             } else {
-                rates[$0].rate = baseRate
+                rate.exchangeValue = value.map { $0 / currencyRate.rate * rate.rate }
             }
+            return rate
         }
-        currentRates = rates
-    }
-
-    private func setBaseCurrency() {
-        currentRates = updateBaseCurrency(rates: currentRates)
-    }
-
-    private func updateBaseCurrency(rates currencyRates: [CurrencyRate]) -> [CurrencyRate] {
-        var rates = currencyRates
-        let currentBaseRate = rates.first {$0.currency == baseCurrency}!.rate
-        rates.indices.forEach {
-            let currentRate = rates[$0].rate
-            rates[$0].base = baseCurrency
-            if rates[$0].base != requestedBaseCurrency {
-                rates[$0].rate = (1 / currentBaseRate) * currentRate
-            } else {
-                rates[$0].rate = currentRate / currentBaseRate
-            }
-        }
-        return rates
     }
 }
