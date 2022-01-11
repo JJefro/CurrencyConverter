@@ -21,8 +21,8 @@ extension MainViewController {
     }
 
     func bind() {
-        converterView.dataSource.delegate = self
         brain.delegate = self
+        converterView.dataSource.delegate = self
     }
 
     // MARK: - Buttons Targets
@@ -30,7 +30,6 @@ extension MainViewController {
         converterView.addCurrencyButton.addTarget(self, action: #selector(addCurrencyButtonPressed(_:)), for: .touchUpInside)
         converterView.segmentedControl.addTarget(self, action: #selector(segmentDidChange(_:)), for: .valueChanged)
         converterView.shareButton.addTarget(self, action: #selector(shareButtonPressed(_:)), for: .touchUpInside)
-        
         updatingExchangeRateButton.addTarget(self, action: #selector(exchangeRateButtonPressed(_:)), for: .touchUpInside)
     }
 
