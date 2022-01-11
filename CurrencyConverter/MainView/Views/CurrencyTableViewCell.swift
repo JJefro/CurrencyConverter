@@ -68,13 +68,6 @@ class CurrencyTableViewCell: UITableViewCell {
         }
     }
 
-    func getCurrentRate() -> Double? {
-        if let rate = Double(textFieldView.txtField.text!) {
-            return rate
-        }
-        return nil
-    }
-
     // MARK: - HorizontalStack Configurations
     private func configureHorizontalStack() {
         horizontalStack.axis = .horizontal
