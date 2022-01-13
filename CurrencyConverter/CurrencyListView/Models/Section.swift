@@ -8,6 +8,6 @@
 import Foundation
 
 struct Section {
-    let firstCharacter: String
+    var title: String
     let currencyRates: [CurrencyRate]
 }

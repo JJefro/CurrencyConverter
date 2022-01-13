@@ -10,6 +10,20 @@ import UIKit
 
 struct CurrencyEntity {
 
+    static let initialCurrencies: [Currency] = [
+        Currency(rawValue: "EUR"),
+        Currency(rawValue: "USD")
+    ]
+
+    static let popularCurrencies: [Currency] = [
+        Currency(rawValue: "USD"),
+        Currency(rawValue: "EUR"),
+        Currency(rawValue: "RUB"),
+        Currency(rawValue: "ILS"),
+        Currency(rawValue: "GBP"),
+        Currency(rawValue: "JPY"),
+        Currency(rawValue: "CNY")]
+
     var currencyDictionary: [String: Double]
     var baseCurrency: String
 

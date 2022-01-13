@@ -39,3 +39,8 @@
 "networkError_badURL"            = "Invalid URL";
 "networkError_badServerResponse" = "Check your internet connection.";
 "networkError_noDataError"       = "No data was returned.";
+
+"currencyListView_firstSection_title" = "Popular";
+"currencyListView_searchBar_placeholder" = "Search Currency";
+"currencyListView_navBar_title" = "Currencies";
+"currencyListView_navBar_backButtonTitle" = "Converter";

@@ -9,6 +9,7 @@ import UIKit
 
 protocol TableViewDataSourceDelegate: AnyObject {
     func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyValueDidChange text: String, for currency: Currency)
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyDidRemoved currency: Currency)
 }
 
 class TableViewDataSource: NSObject, UITableViewDelegate {
@@ -23,6 +24,18 @@ class TableViewDataSource: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: nil) { _, _, completion in
+            DispatchQueue.main.async { [self] in
+                delegate?.tableViewDataSource(self, currencyDidRemoved: objects[indexPath.row].currency)
+            }
+            completion(true)
+        }
+        delete.image = R.image.trashImage()
+        delete.backgroundColor = R.color.converterView.backgroundColor()
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }
 

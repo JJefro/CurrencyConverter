@@ -17,22 +17,12 @@ protocol ConverterBrainDelegate: AnyObject {
 protocol ConverterBrainProtocol {
     var delegate: ConverterBrainDelegate? { get set }
     var currentRates: [CurrencyExchangeData] { get set }
+    var fetchedRates: [CurrencyRate] { get }
 
     func updateCurrencyRates()
+    func appendCurrency(_ currency: Currency)
+    func deleteCurrency(_ currency: Currency)
     func calculateRates(value: String, currency: Currency)
-}
-
-struct CurrencyExchangeData {
-    let currency: Currency
-    let rate: Double
-    var exchangeValue: Double?
-
-    var exchangeValueString: String? {
-        if let value = exchangeValue {
-            return String(format: "%.2f", value)
-        }
-        return nil
-    }
 }
 
 class ConverterBrain: ConverterBrainProtocol {
@@ -40,13 +30,13 @@ class ConverterBrain: ConverterBrainProtocol {
     weak var delegate: ConverterBrainDelegate?
     private let repository: RatesRepositoryProtocol
     private let requestedBaseCurrency = Currency.init(rawValue: "EUR")
-    private var fetchedRates: [CurrencyRate] = []
-
-    init(repository: RatesRepositoryProtocol) {
-        self.repository = repository
+    private var trackedCurrencies: [Currency] = []
+    var fetchedRates: [CurrencyRate] = [] {
+        didSet {
+            let rates = fetchedRates.filter { trackedCurrencies.contains($0.currency) }
+            currentRates = rates.map { CurrencyExchangeData(currency: $0.currency, rate: $0.rate) }
+        }
     }
-
-    var currentCurrencies: [Currency] = [Currency(rawValue: "USD"), Currency(rawValue: "EUR"), Currency(rawValue: "RUB"), Currency(rawValue: "CNY")]
 
     var currentRates: [CurrencyExchangeData] = [] {
         didSet {
@@ -54,18 +44,22 @@ class ConverterBrain: ConverterBrainProtocol {
         }
     }
 
+    init(repository: RatesRepositoryProtocol) {
+        self.repository = repository
+    }
+
     func updateCurrencyRates() {
         delegate?.converterBrain(self, didUpdateLoading: true)
-        repository.fetchRates(currency: requestedBaseCurrency) { result in
+        loadTrackedCurrencies()
+        repository.fetchRates(currency: requestedBaseCurrency) { [self] result in
             switch result {
             case let .success(rates):
-                self.fetchedRates = rates.wrappedValue.filter { self.currentCurrencies.contains($0.currency) }
-                self.currentRates = self.fetchedRates.map { CurrencyExchangeData(currency: $0.currency, rate: $0.rate) }
-                self.delegate?.converterBrain(self, didUpdateDate: rates.createdAt)
+                fetchedRates = rates.wrappedValue
+                delegate?.converterBrain(self, didUpdateDate: rates.createdAt)
             case let .failure(error):
-                self.delegate?.converterBrain(self, errorOccured: error)
+                delegate?.converterBrain(self, errorOccured: error)
             }
-            self.delegate?.converterBrain(self, didUpdateLoading: false)
+            delegate?.converterBrain(self, didUpdateLoading: false)
         }
     }
 
@@ -73,13 +67,29 @@ class ConverterBrain: ConverterBrainProtocol {
         guard let currencyRate = fetchedRates.first(where: { $0.currency == currency }) else { return }
         let value = Double(value)
         currentRates = currentRates.map {
-            var rate = $0
-            if rate.currency == currency {
-                rate.exchangeValue = value
+            var data = $0
+            if data.currency == currency {
+                data.exchangeValue = value
             } else {
-                rate.exchangeValue = value.map { $0 / currencyRate.rate * rate.rate }
+                data.exchangeValue = value.map { $0 / currencyRate.rate * data.rate }
             }
-            return rate
+            return data
         }
+    }
+
+    func deleteCurrency(_ currency: Currency) {
+        repository.deleteCurrency(currency)
+        updateCurrencyRates()
+    }
+
+    private func loadTrackedCurrencies() {
+        repository.loadTrackedCurrencies { [self] currencies in
+            trackedCurrencies = currencies
+        }
+    }
+
+    func appendCurrency(_ currency: Currency) {
+        repository.saveCurrency(currency: currency)
+        updateCurrencyRates()
     }
 }
