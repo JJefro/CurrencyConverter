@@ -10,12 +10,12 @@ import SnapKit
 
 class ConverterView: UIView {
 
+    var dataSource = TableViewDataSource()
     var segmentedControl = UISegmentedControl()
-    var tableView = UITableView()
     var addCurrencyButton = CardButton()
     var shareButton = CardButton()
 
-    var dataSource = TableViewDataSource()
+    private var tableView = UITableView()
 
     var objects: [CurrencyExchangeData] {
         get { dataSource.objects }
@@ -98,7 +98,7 @@ class ConverterView: UIView {
         self.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.equalTo(segmentedControl.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(addCurrencyButton.snp.top)
         }
     }

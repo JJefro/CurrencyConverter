@@ -14,6 +14,6 @@ struct LocalizedCurrency {
         let currencyLocale = Locale(identifier: currency.rawValue)
         let currencyName = (currencyLocale as NSLocale).displayName(forKey: NSLocale.Key.currencyCode, value: currency.rawValue)
         guard let name = currencyName else {return nil}
-        return name
+        return name.capitalized
     }
 }

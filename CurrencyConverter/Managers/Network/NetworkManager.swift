@@ -55,8 +55,6 @@ class NetworkManager: NetworkManagerProtocol {
             }
             return
         }
-        print(url.description)
-
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
 

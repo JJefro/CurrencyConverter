@@ -9,6 +9,9 @@ import Foundation
 
 protocol RatesRepositoryProtocol {
     func fetchRates(currency: Currency, completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void)
+    func loadTrackedCurrencies(completion: @escaping ([Currency]) -> Void)
+    func saveCurrency(currency: Currency)
+    func deleteCurrency(_ currency: Currency)
 }
 
 class DataManager: RatesRepositoryProtocol {
@@ -33,6 +36,24 @@ class DataManager: RatesRepositoryProtocol {
                     completion(.failure(error))
                 }
             }
+        }
+    }
+
+    func saveCurrency(currency: Currency) {
+        localDataSource.trackedCurrencies?.append(currency)
+    }
+
+    func deleteCurrency(_ currency: Currency) {
+        localDataSource.trackedCurrencies?.removeAll(where: { $0 == currency })
+    }
+
+    func loadTrackedCurrencies(completion: @escaping ([Currency]) -> Void) {
+        if let currencies = localDataSource.trackedCurrencies, !currencies.isEmpty {
+            completion(currencies)
+        } else {
+            let initialCurrencies = CurrencyEntity.initialCurrencies
+            localDataSource.trackedCurrencies = initialCurrencies
+            completion(initialCurrencies)
         }
     }
 }
