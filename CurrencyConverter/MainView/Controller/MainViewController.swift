@@ -18,13 +18,12 @@ class MainViewController: UIViewController {
                                                             localDataSource: RatesLocalDataSource(),
                                                             remoteDataSource: RatesRemoteDataSource(networkManager: NetworkManager())))
     var loadingView = LoadingView()
-    private let currencyListViewController = CurrencyListViewController()
+    var fetchedRates: [CurrencyRate] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         updateData()
-        currencyListViewController.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +36,10 @@ class MainViewController: UIViewController {
     }
 
     @objc func addCurrencyButtonPressed(_ sender: UIButton) {
-        currencyListViewController.currencies = brain.fetchedRates
-        navigationController?.pushViewController(currencyListViewController, animated: true)
+        let currenciesListVC = CurrenciesListViewController()
+        currenciesListVC.currencies = fetchedRates
+        currenciesListVC.delegate = self
+        navigationController?.pushViewController(currenciesListVC, animated: true)
     }
 
     @objc func shareButtonPressed(_ sender: UIButton) {
@@ -60,16 +61,19 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: TableViewDataSourceDelegate {
-    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyDidRemoved currency: Currency) {
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didRemoveCurrency currency: Currency) {
         brain.deleteCurrency(currency)
     }
 
-    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyValueDidChange text: String, for currency: Currency) {
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didChangeCurrencyValue text: String, for currency: Currency) {
         brain.calculateRates(value: text, currency: currency)
     }
 }
 
 extension MainViewController: ConverterBrainDelegate {
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didFetchCurrencies rates: [CurrencyRate]) {
+        fetchedRates = rates
+    }
 
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didConvertRates rates: [CurrencyExchangeData]) {
         converterView.objects = rates
@@ -88,8 +92,8 @@ extension MainViewController: ConverterBrainDelegate {
     }
 }
 
-extension MainViewController: CurrencyListViewControllerDelegate {
-    func currencyListViewController(_ currencyListViewController: CurrencyListViewController, didSelectedCurrency currency: Currency) {
+extension MainViewController: CurrenciesListViewControllerDelegate {
+    func currenciesListViewController(_ currencyListViewController: CurrenciesListViewController, didSelectCurrency currency: Currency) {
         brain.appendCurrency(currency)
     }
 }

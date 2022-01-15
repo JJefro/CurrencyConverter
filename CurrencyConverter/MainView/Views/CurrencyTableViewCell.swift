@@ -14,8 +14,6 @@ protocol CurrencyTableViewCellDelegate: AnyObject {
 
 class CurrencyTableViewCell: UITableViewCell {
 
-    static let identifier = "CurrencyTableViewCell"
-
     weak var delegate: CurrencyTableViewCellDelegate?
     override var isFirstResponder: Bool { textFieldView.txtField.isFirstResponder }
 
@@ -32,6 +30,7 @@ class CurrencyTableViewCell: UITableViewCell {
         contentView.addSubview(horizontalStack)
         contentView.backgroundColor = R.color.converterView.backgroundColor()
         backgroundColor = R.color.converterView.backgroundColor()
+        selectionStyle = .none
 
         configureHorizontalStack()
         configureCurrencyLabelHorizontalStack()

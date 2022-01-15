@@ -10,8 +10,6 @@ import SnapKit
 
 class CurrencyListTableViewCell: UITableViewCell {
 
-    static let identifier = "CurrencyListTableViewCell"
-
     private var currencyCode = UILabel()
     var currencyName = UILabel()
     private var horizontalStack = UIStackView()
@@ -47,8 +45,8 @@ class CurrencyListTableViewCell: UITableViewCell {
         currencyCode.textColor = R.color.mainView.textColor()
 
         currencyName.font = R.font.sfProDisplayRegular(size: 17)
-        currencyName.numberOfLines = 0
         currencyName.textColor = R.color.mainView.textColor()
+        currencyName.numberOfLines = 0
 
         setLabelsConstraints()
     }

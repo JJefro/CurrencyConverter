@@ -13,9 +13,6 @@ struct CurrencyExchangeData {
     var exchangeValue: Double?
 
     var exchangeValueString: String? {
-        if let value = exchangeValue {
-            return String(format: "%.2f", value)
-        }
-        return nil
+        return exchangeValue.map { String(format: "%.2f", $0) }
     }
 }
