@@ -1,5 +1,5 @@
 //
-//  CurrencyTableViewDatraSource.swift
+//  TableViewDatraSource.swift
 //  CurrencyConverter
 //
 //  Created by Jevgenijs Jefrosinins on 05/12/2021.
@@ -8,8 +8,8 @@
 import UIKit
 
 protocol TableViewDataSourceDelegate: AnyObject {
-    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyValueDidChange text: String, for currency: Currency)
-    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, currencyDidRemoved currency: Currency)
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didChangeCurrencyValue text: String, for currency: Currency)
+    func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didRemoveCurrency currency: Currency)
 }
 
 class TableViewDataSource: NSObject, UITableViewDelegate {
@@ -29,7 +29,7 @@ class TableViewDataSource: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: nil) { _, _, completion in
             DispatchQueue.main.async { [self] in
-                delegate?.tableViewDataSource(self, currencyDidRemoved: objects[indexPath.row].currency)
+                delegate?.tableViewDataSource(self, didRemoveCurrency: objects[indexPath.row].currency)
             }
             completion(true)
         }
@@ -43,17 +43,16 @@ extension TableViewDataSource: UITableViewDataSource {
 
     // MARK: - UITableView Data Source Methods
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyTableViewCell.identifier) as! CurrencyTableViewCell
+        let cell: CurrencyTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         cell.delegate = self
         let object = objects[indexPath.row]
         cell.updateCell(data: object)
-        cell.selectionStyle = .none
         return cell
     }
 }
 
 extension TableViewDataSource: CurrencyTableViewCellDelegate {
     func currencyTableViewCell(_ currencyTableViewCell: CurrencyTableViewCell, currencyValueDidChange text: String, for currency: Currency) {
-        delegate?.tableViewDataSource(self, currencyValueDidChange: text, for: currency)
+        delegate?.tableViewDataSource(self, didChangeCurrencyValue: text, for: currency)
     }
 }

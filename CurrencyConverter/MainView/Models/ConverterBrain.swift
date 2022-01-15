@@ -12,12 +12,12 @@ protocol ConverterBrainDelegate: AnyObject {
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateDate date: Date)
     func converterBrain(_ converterBrain: ConverterBrainProtocol, errorOccured error: Error)
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didUpdateLoading isLoading: Bool)
+    func converterBrain(_ converterBrain: ConverterBrainProtocol, didFetchCurrencies rates: [CurrencyRate])
 }
 
 protocol ConverterBrainProtocol {
     var delegate: ConverterBrainDelegate? { get set }
     var currentRates: [CurrencyExchangeData] { get set }
-    var fetchedRates: [CurrencyRate] { get }
 
     func updateCurrencyRates()
     func appendCurrency(_ currency: Currency)
@@ -31,10 +31,11 @@ class ConverterBrain: ConverterBrainProtocol {
     private let repository: RatesRepositoryProtocol
     private let requestedBaseCurrency = Currency.init(rawValue: "EUR")
     private var trackedCurrencies: [Currency] = []
-    var fetchedRates: [CurrencyRate] = [] {
+    private var fetchedRates: [CurrencyRate] = [] {
         didSet {
             let rates = fetchedRates.filter { trackedCurrencies.contains($0.currency) }
             currentRates = rates.map { CurrencyExchangeData(currency: $0.currency, rate: $0.rate) }
+            delegate?.converterBrain(self, didFetchCurrencies: fetchedRates)
         }
     }
 
