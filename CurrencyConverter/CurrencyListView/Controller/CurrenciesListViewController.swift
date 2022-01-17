@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Speech
 
 protocol CurrenciesListViewControllerDelegate: AnyObject {
     func currenciesListViewController(_ currenciesListViewController: CurrenciesListViewController, didSelectCurrency currency: Currency)
@@ -43,23 +42,23 @@ class CurrenciesListViewController: UIViewController {
     }
 }
 
+// MARK: - UISearchBar Delegate Methods
 extension CurrenciesListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         model.filterCurrencies(currencies, by: searchText)
     }
-
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-    }
 }
 
-extension CurrenciesListViewController: CurrencyListTableViewDataSourceDelegate {
-    func currencyListTableViewDataSource(_ currencyListTableViewDataSource: CurrenciesListTableViewDataSource, didSelectedCurrency currency: Currency) {
+// MARK: - CurrenciesListTableViewDataSource Delegate Methods
+extension CurrenciesListViewController: CurrenciesListTableViewDataSourceDelegate {
+    func currenciesListTableViewDataSource(_ currencyListTableViewDataSource: CurrenciesListTableViewDataSource, didSelectedCurrency currency: Currency) {
         navigationController?.popToRootViewController(animated: true)
         delegate?.currenciesListViewController(self, didSelectCurrency: currency)
     }
 }
 
-extension CurrenciesListViewController: CurrencyListBrainDelegate {
+// MARK: - CurrenciesListBrain Delegate Methods
+extension CurrenciesListViewController: CurrenciesListBrainDelegate {
     func currenciesListBrain(_ currenciesListBrain: CurrenciesListBrain, didSortCurrenciesIn sections: [Section]) {
         self.sections = sections
     }

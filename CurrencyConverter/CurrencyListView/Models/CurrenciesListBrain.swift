@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol CurrencyListBrainDelegate: AnyObject {
+protocol CurrenciesListBrainDelegate: AnyObject {
     func currenciesListBrain(_ currencyListBrain: CurrenciesListBrain, didSortCurrenciesIn sections: [Section])
 }
 
 protocol CurrenciesListBrainProtocol {
-    var delegate: CurrencyListBrainDelegate? { get set }
+    var delegate: CurrenciesListBrainDelegate? { get set }
 
     func filterCurrencies(_ currencies: [CurrencyRate], by text: String)
     func sortCurrenciesInSections(_ currencies: [CurrencyRate])
@@ -20,7 +20,7 @@ protocol CurrenciesListBrainProtocol {
 
 class CurrenciesListBrain: CurrenciesListBrainProtocol { 
 
-    weak var delegate: CurrencyListBrainDelegate?
+    weak var delegate: CurrenciesListBrainDelegate?
 
     func filterCurrencies(_ currencies: [CurrencyRate], by text: String) {
         if !text.isEmpty {

@@ -7,14 +7,14 @@
 
 import UIKit
 
-protocol CurrencyListTableViewDataSourceDelegate: AnyObject {
-    func currencyListTableViewDataSource(_ currencyListTableViewDataSource: CurrenciesListTableViewDataSource, didSelectedCurrency currency: Currency)
+protocol CurrenciesListTableViewDataSourceDelegate: AnyObject {
+    func currenciesListTableViewDataSource(_ currenciesListTableViewDataSource: CurrenciesListTableViewDataSource, didSelectedCurrency currency: Currency)
 }
 
 class CurrenciesListTableViewDataSource: NSObject, UITableViewDelegate {
 
     var sections: [Section] = []
-    weak var delegate: CurrencyListTableViewDataSourceDelegate?
+    weak var delegate: CurrenciesListTableViewDataSourceDelegate?
 
     // MARK: - UITableView Delegate Methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -23,7 +23,7 @@ class CurrenciesListTableViewDataSource: NSObject, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currency = sections[indexPath.section].currencyRates[indexPath.row].currency
-        delegate?.currencyListTableViewDataSource(self, didSelectedCurrency: currency)
+        delegate?.currenciesListTableViewDataSource(self, didSelectedCurrency: currency)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

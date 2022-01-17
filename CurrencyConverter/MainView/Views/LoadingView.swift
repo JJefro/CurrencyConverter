@@ -15,7 +15,7 @@ class LoadingView: UIView {
 
     private var activityIndicator = NVActivityIndicatorView(
         frame: .zero,
-        type: .ballScaleMultiple,
+        type: .ballClipRotateMultiple,
         color: UITraitCollection.current.userInterfaceStyle == .dark ? .white : .darkGray,
         padding: 0
     )

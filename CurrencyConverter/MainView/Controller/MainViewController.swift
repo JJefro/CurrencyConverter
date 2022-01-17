@@ -62,6 +62,7 @@ class MainViewController: UIViewController {
     }
 }
 
+// MARK: - TableViewDataSource Delegate Methods
 extension MainViewController: TableViewDataSourceDelegate {
     func tableViewDataSource(_ tableViewDataSource: TableViewDataSource, didRemoveCurrency currency: Currency) {
         brain.deleteCurrency(currency)
@@ -72,6 +73,7 @@ extension MainViewController: TableViewDataSourceDelegate {
     }
 }
 
+// MARK: - ConverterBrain Delegate Methods
 extension MainViewController: ConverterBrainDelegate {
     func converterBrain(_ converterBrain: ConverterBrainProtocol, didFetchCurrencies rates: [CurrencyRate]) {
         fetchedRates = rates
@@ -94,9 +96,10 @@ extension MainViewController: ConverterBrainDelegate {
     }
 }
 
+// MARK: - CurrenciesListViewController Delegate Methods
 extension MainViewController: CurrenciesListViewControllerDelegate {
     func currenciesListViewController(_ currencyListViewController: CurrenciesListViewController, didSelectCurrency currency: Currency) {
-        brain.appendCurrency(currency)
+        brain.saveCurrency(currency)
         converterView.reloadTableView()
     }
 }

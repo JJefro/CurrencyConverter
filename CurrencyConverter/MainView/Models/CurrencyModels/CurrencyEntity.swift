@@ -22,7 +22,8 @@ struct CurrencyEntity {
         Currency(rawValue: "ILS"),
         Currency(rawValue: "GBP"),
         Currency(rawValue: "JPY"),
-        Currency(rawValue: "CNY")]
+        Currency(rawValue: "CNY")
+    ]
 
     var currencyDictionary: [String: Double]
     var baseCurrency: String
@@ -41,7 +42,7 @@ struct CurrencyEntity {
                 data.append(CurrencyRate(base: base, currency: currency, locale: locale, rate: item.value))
             }
         }
-        if !data.contains( where: { $0.currency == Currency.init(rawValue: baseCurrency) }) {
+        if !data.contains(where: { $0.currency == Currency.init(rawValue: baseCurrency) }) {
             if let baseLocale = LocalizedCurrency.init(currency: base).locale {
                 data.append(CurrencyRate(base: base, currency: base, locale: baseLocale, rate: 1))
             }

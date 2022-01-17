@@ -22,10 +22,8 @@ class ConverterView: UIView {
         set {
             let shouldReload = dataSource.objects.count != newValue.count
             dataSource.objects = newValue
-            if shouldReload {
-                if tableView.window != nil {
-                    tableView.reloadData()
-                }
+            if shouldReload, tableView.window != nil {
+                tableView.reloadData()
             } else {
                 var indexPathsNeedToReload: [IndexPath] = []
                 for cell in tableView.visibleCells {
@@ -33,7 +31,7 @@ class ConverterView: UIView {
                     if (cell as? CurrencyTableViewCell)?.isFirstResponder == false { indexPathsNeedToReload.append(indexPath) }
                 }
                 if tableView.window != nil {
-                tableView.reloadRows(at: indexPathsNeedToReload, with: .none)
+                    tableView.reloadRows(at: indexPathsNeedToReload, with: .none)
                 }
             }
         }

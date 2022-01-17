@@ -20,7 +20,7 @@ protocol ConverterBrainProtocol {
     var currentRates: [CurrencyExchangeData] { get set }
 
     func updateCurrencyRates()
-    func appendCurrency(_ currency: Currency)
+    func saveCurrency(_ currency: Currency)
     func deleteCurrency(_ currency: Currency)
     func calculateRates(value: String, currency: Currency)
 }
@@ -83,14 +83,14 @@ class ConverterBrain: ConverterBrainProtocol {
         updateCurrencyRates()
     }
 
+    func saveCurrency(_ currency: Currency) {
+        repository.saveCurrency(currency)
+        updateCurrencyRates()
+    }
+    
     private func loadTrackedCurrencies() {
         repository.loadTrackedCurrencies { [self] currencies in
             trackedCurrencies = currencies
         }
-    }
-
-    func appendCurrency(_ currency: Currency) {
-        repository.saveCurrency(currency)
-        updateCurrencyRates()
     }
 }
