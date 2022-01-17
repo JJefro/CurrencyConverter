@@ -10,7 +10,7 @@ import Foundation
 protocol RatesRepositoryProtocol {
     func fetchRates(currency: Currency, completion: @escaping (Result<Timestamped<[CurrencyRate]>, Error>) -> Void)
     func loadTrackedCurrencies(completion: @escaping ([Currency]) -> Void)
-    func saveCurrency(currency: Currency)
+    func saveCurrency(_ currency: Currency)
     func deleteCurrency(_ currency: Currency)
 }
 
@@ -39,7 +39,7 @@ class DataManager: RatesRepositoryProtocol {
         }
     }
 
-    func saveCurrency(currency: Currency) {
+    func saveCurrency(_ currency: Currency) {
         localDataSource.trackedCurrencies?.append(currency)
     }
 

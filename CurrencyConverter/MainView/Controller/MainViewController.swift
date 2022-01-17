@@ -15,8 +15,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var updatingExchangeRateButton: ExchangeRateButton!
 
     var brain: ConverterBrainProtocol = ConverterBrain(repository: DataManager(
-                                                            localDataSource: RatesLocalDataSource(),
-                                                            remoteDataSource: RatesRemoteDataSource(networkManager: NetworkManager())))
+        localDataSource: RatesLocalDataSource(),
+        remoteDataSource: RatesRemoteDataSource(networkManager: NetworkManager())))
     var loadingView = LoadingView()
     var fetchedRates: [CurrencyRate] = []
     
@@ -24,12 +24,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         configure()
         updateData()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationItem.largeTitleDisplayMode = .always
-        
     }
 
     @objc func segmentDidChange(_ sender: UISegmentedControl) {
@@ -43,6 +37,14 @@ class MainViewController: UIViewController {
     }
 
     @objc func shareButtonPressed(_ sender: UIButton) {
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, true, 0.0)
+        self.view.drawHierarchy(in: UIScreen.main.bounds, afterScreenUpdates: false)
+        let imageToShare = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        let activityController = UIActivityViewController(activityItems: [imageToShare!], applicationActivities: nil)
+
+        activityController.popoverPresentationController?.sourceView = sender
+        self.present(activityController, animated: true, completion: nil)
     }
 
     @objc func exchangeRateButtonPressed(_ sender: UIButton) {
@@ -95,5 +97,6 @@ extension MainViewController: ConverterBrainDelegate {
 extension MainViewController: CurrenciesListViewControllerDelegate {
     func currenciesListViewController(_ currencyListViewController: CurrenciesListViewController, didSelectCurrency currency: Currency) {
         brain.appendCurrency(currency)
+        converterView.reloadTableView()
     }
 }
