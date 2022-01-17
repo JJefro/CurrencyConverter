@@ -22,10 +22,6 @@ class TableViewDataSource: NSObject, UITableViewDelegate {
         objects.count
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
-
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: nil) { _, _, completion in
             DispatchQueue.main.async { [self] in

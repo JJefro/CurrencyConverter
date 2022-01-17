@@ -40,7 +40,7 @@ extension CurrenciesListTableViewDataSource: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CurrencyListTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        let cell: CurrenciesListTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let section = sections[indexPath.section]
         let object = section.currencyRates[indexPath.row]
         cell.setCell(data: object)

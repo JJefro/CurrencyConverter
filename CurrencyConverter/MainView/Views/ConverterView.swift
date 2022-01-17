@@ -23,14 +23,18 @@ class ConverterView: UIView {
             let shouldReload = dataSource.objects.count != newValue.count
             dataSource.objects = newValue
             if shouldReload {
-                tableView.reloadData()
+                if tableView.window != nil {
+                    tableView.reloadData()
+                }
             } else {
                 var indexPathsNeedToReload: [IndexPath] = []
                 for cell in tableView.visibleCells {
                     guard let indexPath = tableView.indexPath(for: cell) else { continue }
                     if (cell as? CurrencyTableViewCell)?.isFirstResponder == false { indexPathsNeedToReload.append(indexPath) }
                 }
+                if tableView.window != nil {
                 tableView.reloadRows(at: indexPathsNeedToReload, with: .none)
+                }
             }
         }
     }
@@ -47,6 +51,10 @@ class ConverterView: UIView {
 
         configure()
         bind()
+    }
+
+    func reloadTableView() {
+        tableView.reloadData()
     }
 
     private func configure() {
@@ -71,7 +79,7 @@ class ConverterView: UIView {
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
 
-        segmentedControl.selectedSegmentTintColor = R.color.mainView.blue()
+        segmentedControl.selectedSegmentTintColor = R.color.converterView.segmentTintColor()
         segmentedControl.selectedSegmentIndex = 0
         setSegmentedControlConstraints()
     }
@@ -87,6 +95,7 @@ class ConverterView: UIView {
     // MARK: - UITableView Configurations
     func configureTableView() {
         tableView.rowHeight = 60
+        tableView.clipsToBounds = true
         tableView.separatorStyle = .none
         tableView.backgroundColor = R.color.converterView.backgroundColor()
 
@@ -109,10 +118,10 @@ class ConverterView: UIView {
 
         var attrTitle = AttributedString(R.string.localizable.mainView_addCurrencyButton_title())
         attrTitle.font = R.font.sfProDisplayRegular(size: 14)
-        attrTitle.foregroundColor = R.color.mainView.blue()
+        attrTitle.foregroundColor = R.color.mainView.buttonsColor()
 
         config.image = UIImage(systemName: "plus.circle.fill")
-        config.baseForegroundColor = R.color.mainView.blue()
+        config.baseForegroundColor = R.color.mainView.buttonsColor()
         config.imagePadding = 5
         config.imagePlacement = .leading
         config.attributedTitle = attrTitle
@@ -134,7 +143,7 @@ class ConverterView: UIView {
         let imageLargeConfig = UIImage.SymbolConfiguration.init(scale: .large)
         var config = UIButton.Configuration.plain()
         config.image = UIImage(systemName: "square.and.arrow.up", withConfiguration: imageLargeConfig)
-        config.baseForegroundColor = R.color.mainView.blue()
+        config.baseForegroundColor = R.color.mainView.buttonsColor()
 
         shareButton.configuration = config
         setShareButtonConstraints()

@@ -29,6 +29,9 @@ extension CurrenciesListViewController {
     }
 
     private func configureSearchController() {
+        let micImage = UIImage(systemName: "mic.fill")
+        searchController.searchBar.setImage(micImage, for: .bookmark, state: .normal)
+        searchController.searchBar.showsBookmarkButton = true
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchBarStyle = .prominent

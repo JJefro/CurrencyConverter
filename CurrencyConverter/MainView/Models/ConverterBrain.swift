@@ -90,7 +90,7 @@ class ConverterBrain: ConverterBrainProtocol {
     }
 
     func appendCurrency(_ currency: Currency) {
-        repository.saveCurrency(currency: currency)
+        repository.saveCurrency(currency)
         updateCurrencyRates()
     }
 }

@@ -14,7 +14,7 @@ class CurrenciesListTableView: UITableView {
         super.init(frame: frame, style: .insetGrouped)
 
         self.rowHeight = 50
-        self.register(CurrencyListTableViewCell.self, forCellReuseIdentifier: CurrencyListTableViewCell.reuseIdentifier)
+        self.register(CurrenciesListTableViewCell.self, forCellReuseIdentifier: CurrenciesListTableViewCell.reuseIdentifier)
     }
 
     override func layoutSubviews() {

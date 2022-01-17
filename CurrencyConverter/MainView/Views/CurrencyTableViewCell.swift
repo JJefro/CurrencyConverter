@@ -43,12 +43,13 @@ class CurrencyTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var chevronRightImageString: UILabel = {
-        let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: "chevron.right")
-        let text = UILabel()
-        text.attributedText = NSAttributedString(attachment: imageAttachment)
-        return text
+    private var chevronRightImage: UIImageView = {
+        let font = R.font.sfProDisplayRegular(size: 17)
+        let configuration = UIImage.SymbolConfiguration(font: font!)
+        let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)
+        let imageView = UIImageView(image: image)
+        imageView.tintColor = R.color.mainView.textColor()
+        return imageView
     }()
 
     @objc private func textFieldEditingChanged(_ sender: UITextField) {
@@ -97,7 +98,7 @@ class CurrencyTableViewCell: UITableViewCell {
         currencyLabelHorizontalStack.distribution = .equalSpacing
         currencyLabelHorizontalStack.alignment = .center
         currencyLabelHorizontalStack.addArrangedSubview(currencyLabel)
-        currencyLabelHorizontalStack.addArrangedSubview(chevronRightImageString)
+        currencyLabelHorizontalStack.addArrangedSubview(chevronRightImage)
 
         setCurrencyLabelHorizontalStackConstraints()
     }

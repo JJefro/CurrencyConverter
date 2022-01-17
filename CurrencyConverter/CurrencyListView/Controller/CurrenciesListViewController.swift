@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Speech
 
 protocol CurrenciesListViewControllerDelegate: AnyObject {
     func currenciesListViewController(_ currenciesListViewController: CurrenciesListViewController, didSelectCurrency currency: Currency)
@@ -18,7 +19,8 @@ class CurrenciesListViewController: UIViewController {
     var tableView = CurrenciesListTableView()
     let searchController = UISearchController(searchResultsController: nil)
     var dataSource = CurrenciesListTableViewDataSource()
-    var model = CurrenciesListBrain()
+
+    var model: CurrenciesListBrainProtocol = CurrenciesListBrain()
 
     var currencies: [CurrencyRate] = []
 
@@ -31,46 +33,29 @@ class CurrenciesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.navigationItem.largeTitleDisplayMode = .never
+        configure()
         getSectionsFromCurrencies()
     }
 
     private func getSectionsFromCurrencies() {
-        model.sortCurrenciesIntoSections(currencies)
+        model.sortCurrenciesInSections(currencies)
     }
 }
 
 extension CurrenciesListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        model.filterCurrencies(currencies, by: searchText)
+    }
 
-        var section = 0
-        if !sections[0].currencyRates.contains(where: { $0.locale.contains(searchText) }) {
-            if let index = sections.firstIndex(where: { $0.title.contains(searchText.prefix(1)) }) {
-                section = index
-                tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
-            } else {
-                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-            }
-        }
-        if let cell = tableView.visibleCells.first(where: { ($0 as! CurrencyListTableViewCell).currencyName.text!.contains(searchText) }),
-            let indexPath = tableView.indexPath(for: cell) {
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        } else {
-            tableView.scrollToRow(at: IndexPath(row: 0, section: section), at: .top, animated: true)
-        }
+    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
     }
 }
 
 extension CurrenciesListViewController: CurrencyListTableViewDataSourceDelegate {
     func currencyListTableViewDataSource(_ currencyListTableViewDataSource: CurrenciesListTableViewDataSource, didSelectedCurrency currency: Currency) {
-        delegate?.currenciesListViewController(self, didSelectCurrency: currency)
-        tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
         navigationController?.popToRootViewController(animated: true)
+        delegate?.currenciesListViewController(self, didSelectCurrency: currency)
     }
 }
 
