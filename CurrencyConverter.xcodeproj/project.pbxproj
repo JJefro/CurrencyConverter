@@ -21,7 +21,6 @@
 		97664E4B278C52E3003EDD1E /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97664E4A278C52E3003EDD1E /* Section.swift */; };
 		976FE81A277213FF00441D88 /* ConverterBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976FE819277213FF00441D88 /* ConverterBrain.swift */; };
 		976FE81C277280F800441D88 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976FE81B277280F800441D88 /* LoadingView.swift */; };
-		97711AFF275C0DC000CCC7A4 /* ExchangeRateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */; };
 		9775222E27517E6400F2A2B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775222D27517E6400F2A2B8 /* AppDelegate.swift */; };
 		9775223027517E6400F2A2B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775222F27517E6400F2A2B8 /* SceneDelegate.swift */; };
 		9775223227517E6400F2A2B8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9775223127517E6400F2A2B8 /* MainViewController.swift */; };
@@ -43,6 +42,7 @@
 		97983FB1278EEE420014ACB2 /* CurrencyListViewController + Configurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97983FB0278EEE420014ACB2 /* CurrencyListViewController + Configurations.swift */; };
 		97A4C76B275CFC600042E123 /* CardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76A275CFC600042E123 /* CardButton.swift */; };
 		97A4C76D275CFD1B0042E123 /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */; };
+		97B07006279703F400786E83 /* ExchangeRateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B07005279703F400786E83 /* ExchangeRateButton.swift */; };
 		97B0854827561041000035CA /* MainViewController + Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B0854727561041000035CA /* MainViewController + Configuration.swift */; };
 		97B0854C2756116C000035CA /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */; };
 		97B0854D2756116C000035CA /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */; };
@@ -90,7 +90,6 @@
 		97664E4A278C52E3003EDD1E /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		976FE819277213FF00441D88 /* ConverterBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterBrain.swift; sourceTree = "<group>"; };
 		976FE81B277280F800441D88 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExchangeRateButton.swift; path = ../Models/CurrencyModels/ExchangeRateButton.swift; sourceTree = "<group>"; };
 		9775222A27517E6400F2A2B8 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9775222D27517E6400F2A2B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9775222F27517E6400F2A2B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +114,7 @@
 		97983FB0278EEE420014ACB2 /* CurrencyListViewController + Configurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyListViewController + Configurations.swift"; sourceTree = "<group>"; };
 		97A4C76A275CFC600042E123 /* CardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardButton.swift; sourceTree = "<group>"; };
 		97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		97B07005279703F400786E83 /* ExchangeRateButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRateButton.swift; sourceTree = "<group>"; };
 		97B0854727561041000035CA /* MainViewController + Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + Configuration.swift"; sourceTree = "<group>"; };
 		97B0854A2756116C000035CA /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		97B0854B2756116C000035CA /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 				9705BCD2275AC7D800B67DC3 /* ConverterView.swift */,
 				976FE81B277280F800441D88 /* LoadingView.swift */,
 				97A4C76C275CFD1B0042E123 /* CurrencyTableViewCell.swift */,
-				97711AFE275C0DC000CCC7A4 /* ExchangeRateButton.swift */,
+				97B07005279703F400786E83 /* ExchangeRateButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -716,6 +716,7 @@
 			files = (
 				97983FA8278ED3E90014ACB2 /* CurrenciesListViewController.swift in Sources */,
 				97D4E7142791EC0200C01EB6 /* UITableViewCell + Extensions.swift in Sources */,
+				97B07006279703F400786E83 /* ExchangeRateButton.swift in Sources */,
 				977D16F8276E24A200B8F4D9 /* CodableUserDefault.swift in Sources */,
 				97242942275F54BB00C042B4 /* NetworkManager.swift in Sources */,
 				9724293E275F4EA000C042B4 /* CurrencyRate.swift in Sources */,
@@ -726,7 +727,6 @@
 				97983FAB278EE16A0014ACB2 /* CurrenciesListTableViewCell.swift in Sources */,
 				9705BCD3275AC7D800B67DC3 /* ConverterView.swift in Sources */,
 				97B08562275619B4000035CA /* TextFieldsModel.swift in Sources */,
-				97711AFF275C0DC000CCC7A4 /* ExchangeRateButton.swift in Sources */,
 				9705496927678D1400EF8B45 /* CurrencyData.swift in Sources */,
 				9724293A275F4CB900C042B4 /* Secrets.swift in Sources */,
 				97D4E7102791BA9700C01EB6 /* CurrenciesListTableView.swift in Sources */,
