@@ -14,6 +14,6 @@ extension Date {
         let currentHour = Calendar.current.dateComponents([.hour], from: Date()).hour!
         let hourOfTheLastUpdate = Calendar.current.dateComponents([.hour], from: self).hour!
 
-        return currentDay == dayOfTheLastUpdate && currentHour > hourOfTheLastUpdate
+        return currentDay != dayOfTheLastUpdate || currentHour > hourOfTheLastUpdate
     }
 }

@@ -20,12 +20,12 @@ class ExchangeRateButton: CardButton {
 
         var attrTitle = AttributedString(R.string.localizable.mainView_updatingExchangeRateButton_title())
         attrTitle.font = R.font.sfProDisplayBold(size: 17)
-        attrTitle.foregroundColor = R.color.mainView.buttonsColor()
+        attrTitle.foregroundColor = R.color.mainView.blue()
         config.attributedTitle = attrTitle
 
         self.configuration = config
         self.layer.cornerRadius = 14
         self.layer.borderWidth = 1
-        self.layer.borderColor = R.color.mainView.buttonsColor()?.cgColor
+        self.layer.borderColor = R.color.mainView.blue()?.cgColor
     }
 }
