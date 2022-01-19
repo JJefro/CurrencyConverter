@@ -50,3 +50,11 @@ struct CurrencyEntity {
         return data.sorted(by: { $0.currency.rawValue < $1.currency.rawValue })
     }
 }
+
+#if DEBUG
+extension CurrencyEntity {
+    static var currencyRatesMock: Self {
+        .init(CurrencyData(query: CurrencyData.Query(baseCurrency: "EUR"), data: ["ALL": 121.666913, "USD": 1.134919, "AUD": 68.4, "ILS": 35.54, "RUB": 86.536329]))
+    }
+}
+#endif

@@ -13,6 +13,7 @@ typealias CurrencyRatesCompletion = ((_ currencyRates: Result<CurrencyEntity, Er
 protocol NetworkManagerProtocol {
     func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion)
     func getHistoricalCurrencyRates(fromDate: String, toDate: String, baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion)
+    func performRequest(url: URL?, completion: @escaping RequestCompletion)
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -48,7 +49,7 @@ class NetworkManager: NetworkManagerProtocol {
         }
     }
 
-    private func performRequest(url: URL?, completion: @escaping RequestCompletion) {
+    func performRequest(url: URL?, completion: @escaping RequestCompletion) {
         guard let url = url else {
             DispatchQueue.main.async {
                 completion(.failure(NetworkError.badURL))

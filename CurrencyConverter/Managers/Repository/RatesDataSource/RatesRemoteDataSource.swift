@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RatesRemoteDataSourceProtocol {
-    func fetchRates(currency: Currency, completion: @escaping (Result<[CurrencyRate], Error>) -> Void)
+    func fetchRates(baseCurrency: Currency, completion: @escaping (Result<[CurrencyRate], Error>) -> Void)
 }
 
 class RatesRemoteDataSource: RatesRemoteDataSourceProtocol {
@@ -18,11 +18,11 @@ class RatesRemoteDataSource: RatesRemoteDataSourceProtocol {
         self.networkManager = networkManager
     }
 
-    func fetchRates(currency: Currency, completion: @escaping (Result<[CurrencyRate], Error>) -> Void) {
-        networkManager.getRatesFrom(currency) { result in
+    func fetchRates(baseCurrency: Currency, completion: @escaping (Result<[CurrencyRate], Error>) -> Void) {
+        networkManager.getRatesFrom(baseCurrency) { result in
             switch result {
-            case let .success(rate):
-                completion(.success(rate.data))
+            case let .success(rates):
+                completion(.success(rates.data))
             case let .failure(error):
                 completion(.failure(error))
             }

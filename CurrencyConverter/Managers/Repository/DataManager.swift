@@ -28,7 +28,7 @@ class DataManager: RatesRepositoryProtocol {
             !localRates.createdAt.isInHourIntervalWithCurrentTime {
             completion(.success(localRates))
         } else {
-            remoteDataSource.fetchRates(currency: currency) { [localDataSource] result in
+            remoteDataSource.fetchRates(baseCurrency: currency) { [localDataSource] result in
                 switch result.map({ Timestamped(wrappedValue: $0) }) {
                 case let .success(rates):
                     localDataSource.rates = rates

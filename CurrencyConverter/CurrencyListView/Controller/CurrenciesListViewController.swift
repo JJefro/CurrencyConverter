@@ -23,13 +23,6 @@ class CurrenciesListViewController: UIViewController {
 
     var currencies: [CurrencyRate] = []
 
-    private var sections: [Section] = [] {
-        didSet {
-            dataSource.sections = sections
-            tableView.reloadData()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.largeTitleDisplayMode = .never
@@ -60,6 +53,7 @@ extension CurrenciesListViewController: CurrenciesListTableViewDataSourceDelegat
 // MARK: - CurrenciesListBrain Delegate Methods
 extension CurrenciesListViewController: CurrenciesListBrainDelegate {
     func currenciesListBrain(_ currenciesListBrain: CurrenciesListBrain, didSortCurrenciesIn sections: [Section]) {
-        self.sections = sections
+        dataSource.sections = sections
+        tableView.reloadData()
     }
 }
