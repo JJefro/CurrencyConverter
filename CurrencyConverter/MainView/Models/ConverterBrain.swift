@@ -18,6 +18,8 @@ protocol ConverterBrainDelegate: AnyObject {
 protocol ConverterBrainProtocol {
     var delegate: ConverterBrainDelegate? { get set }
     var currentRates: [CurrencyExchangeData] { get set }
+    var fetchedRates: [CurrencyRate] { get }
+    var trackedCurrencies: [Currency] { get }
 
     func updateCurrencyRates()
     func saveCurrency(_ currency: Currency)
@@ -29,9 +31,10 @@ class ConverterBrain: ConverterBrainProtocol {
 
     weak var delegate: ConverterBrainDelegate?
     private let repository: RatesRepositoryProtocol
+    
     private let requestedBaseCurrency = Currency.init(rawValue: "EUR")
-    private var trackedCurrencies: [Currency] = []
-    private var fetchedRates: [CurrencyRate] = [] {
+    var trackedCurrencies: [Currency] = []
+    var fetchedRates: [CurrencyRate] = [] {
         didSet {
             let rates = fetchedRates.filter { trackedCurrencies.contains($0.currency) }
             currentRates = rates.map { CurrencyExchangeData(currency: $0.currency, rate: $0.rate) }

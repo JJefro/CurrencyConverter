@@ -13,6 +13,7 @@ protocol CurrenciesListBrainDelegate: AnyObject {
 
 protocol CurrenciesListBrainProtocol {
     var delegate: CurrenciesListBrainDelegate? { get set }
+    var sections: [Section] { get }
 
     func filterCurrencies(_ currencies: [CurrencyRate], by text: String)
     func sortCurrenciesInSections(_ currencies: [CurrencyRate])
@@ -21,6 +22,12 @@ protocol CurrenciesListBrainProtocol {
 class CurrenciesListBrain: CurrenciesListBrainProtocol { 
 
     weak var delegate: CurrenciesListBrainDelegate?
+
+    var sections: [Section] = [] {
+        didSet {
+            delegate?.currenciesListBrain(self, didSortCurrenciesIn: sections)
+        }
+    }
 
     func filterCurrencies(_ currencies: [CurrencyRate], by text: String) {
         if !text.isEmpty {
@@ -52,6 +59,6 @@ class CurrenciesListBrain: CurrenciesListBrainProtocol {
         if !popularCurrencies.isEmpty {
             arrayOfSections.insert(Section(title: R.string.localizable.currencyListView_firstSection_title(), currencyRates: popularCurrencies), at: 0)
         }
-        delegate?.currenciesListBrain(self, didSortCurrenciesIn: arrayOfSections)
+        sections = arrayOfSections
     }
 }
