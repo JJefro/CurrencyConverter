@@ -53,8 +53,8 @@ struct CurrencyEntity {
 
 #if DEBUG
 extension CurrencyEntity {
-    static var currencyRatesMock: Self {
-        .init(CurrencyData(query: CurrencyData.Query(baseCurrency: "EUR"), data: ["ALL": 121.666913, "USD": 1.134919, "AUD": 68.4, "ILS": 35.54, "RUB": 86.536329]))
+    static var currencyRatesDataMock: Self {
+        .init(CurrencyData(query: CurrencyData.Query(baseCurrency: "EUR"), data: ["ALL": 121.666913, "USD": 1.134919, "AUD": 68.4, "ILS": 3.554, "RUB": 86.536329]))
     }
 }
 #endif
