@@ -8,19 +8,9 @@
 import XCTest
 @testable import CurrencyConverter
 
-class DateExtensionsTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-    }
-
-    override func tearDownWithError() throws {
-    }
+class DateIsInHourIntervalWithCurrentTimeTests: XCTestCase {
 
     func test_date_extension_isInHourIntervalWithCurrentTime() throws {
-        let currentDate = Date()
-        XCTAssertFalse(currentDate.isInHourIntervalWithCurrentTime)
-
         let currentMinutes = Calendar.current.dateComponents([.minute], from: currentDate).minute!
 
         if currentMinutes > 5 {
@@ -33,12 +23,5 @@ class DateExtensionsTests: XCTestCase {
 
         let oneDayAgo = Calendar.current.date(byAdding: .day, value: -1, to: currentDate)!
         XCTAssertTrue(oneDayAgo.isInHourIntervalWithCurrentTime)
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
     }
 }

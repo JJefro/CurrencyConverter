@@ -83,11 +83,4 @@ class ConverterBrainTests: XCTestCase {
         let shekel = model.currentRates.first(where: { $0.currency == Currency(rawValue: "ILS") })!
         XCTAssertEqual(shekel.exchangeValueString, expectedOutputUSDtoILS)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 }

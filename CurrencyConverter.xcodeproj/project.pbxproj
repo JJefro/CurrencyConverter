@@ -11,7 +11,7 @@
 		9705BCD3275AC7D800B67DC3 /* ConverterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9705BCD2275AC7D800B67DC3 /* ConverterView.swift */; };
 		9708E2902790249900A73846 /* CurrenciesListBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9708E28F2790249900A73846 /* CurrenciesListBrain.swift */; };
 		970E42A4278DE5170005D769 /* CurrencyExchangeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970E42A3278DE5170005D769 /* CurrencyExchangeData.swift */; };
-		9714E44E27977D7C00597894 /* DateExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9714E44D27977D7C00597894 /* DateExtensionsTests.swift */; };
+		9714E44E27977D7C00597894 /* DateIsInHourIntervalWithCurrentTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9714E44D27977D7C00597894 /* DateIsInHourIntervalWithCurrentTimeTests.swift */; };
 		97152E70279855C500D66A21 /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97152E6F279855C500D66A21 /* DataManagerMock.swift */; };
 		97190E66279871E700826DB7 /* RatesLocalDataSourceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97190E65279871E700826DB7 /* RatesLocalDataSourceMock.swift */; };
 		971D1254279AA26200F8C6B1 /* MainViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971D1253279AA26200F8C6B1 /* MainViewUITests.swift */; };
@@ -104,7 +104,7 @@
 		9708E28F2790249900A73846 /* CurrenciesListBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListBrain.swift; sourceTree = "<group>"; };
 		970E42A3278DE5170005D769 /* CurrencyExchangeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyExchangeData.swift; sourceTree = "<group>"; };
 		9714E44927977A5500597894 /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
-		9714E44D27977D7C00597894 /* DateExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionsTests.swift; sourceTree = "<group>"; };
+		9714E44D27977D7C00597894 /* DateIsInHourIntervalWithCurrentTimeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateIsInHourIntervalWithCurrentTimeTests.swift; sourceTree = "<group>"; };
 		97152E6F279855C500D66A21 /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
 		97190E65279871E700826DB7 /* RatesLocalDataSourceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesLocalDataSourceMock.swift; sourceTree = "<group>"; };
 		971D1248279AA1E000F8C6B1 /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -415,7 +415,7 @@
 			children = (
 				9714E4462797794500597894 /* Mocks */,
 				977AD2E62786FD470079AFAD /* TextFieldsTests */,
-				9714E44D27977D7C00597894 /* DateExtensionsTests.swift */,
+				9714E44D27977D7C00597894 /* DateIsInHourIntervalWithCurrentTimeTests.swift */,
 				97F721652798B304004120B1 /* ConverterBrainTests.swift */,
 				97F721632798B2EB004120B1 /* CurrenciesListBrainTests.swift */,
 			);
@@ -936,7 +936,7 @@
 				97F721662798B304004120B1 /* ConverterBrainTests.swift in Sources */,
 				97190E66279871E700826DB7 /* RatesLocalDataSourceMock.swift in Sources */,
 				97770AED279850B700ED2F7B /* NetworkManagerMock.swift in Sources */,
-				9714E44E27977D7C00597894 /* DateExtensionsTests.swift in Sources */,
+				9714E44E27977D7C00597894 /* DateIsInHourIntervalWithCurrentTimeTests.swift in Sources */,
 				97152E70279855C500D66A21 /* DataManagerMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

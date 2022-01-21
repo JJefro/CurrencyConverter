@@ -15,7 +15,7 @@ class ConverterView: UIView {
     var addCurrencyButton = CardButton()
     var shareButton = CardButton()
 
-    var tableView = UITableView()
+    let tableView = UITableView()
 
     var objects: [CurrencyExchangeData] {
         get { dataSource.objects }

@@ -48,6 +48,7 @@ class CurrenciesListViewUITests: XCTestCase {
     func test_currenciesListView_presenceOfElements() throws {
         XCTAssertTrue(addCurrencyButton.exists)
         addCurrencyButton.tap()
+        sleep(2)
         XCTAssertTrue(app.isOnCurrenciesListView)
         XCTAssertTrue(navigationBar.exists)
         XCTAssertTrue(backButton.exists)
