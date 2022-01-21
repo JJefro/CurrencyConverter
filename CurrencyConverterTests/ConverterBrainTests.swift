@@ -10,67 +10,84 @@ import XCTest
 
 class ConverterBrainTests: XCTestCase {
 
-        private var properties = PropertiesMock()
+    private var properties = PropertiesMock()
 
-        private var networkManagerMock: NetworkManagerProtocol!
-        private var ratesRemoteDataSource: RatesRemoteDataSourceProtocol!
-        private var ratesLocalDataSourceMock: RatesLocalDataSourceProtocol!
-        private var dataManagerMock: RatesRepositoryProtocol!
-        private var model: ConverterBrainProtocol!
+    private var networkManagerMock: NetworkManagerProtocol!
+    private var ratesRemoteDataSource: RatesRemoteDataSourceProtocol!
+    private var ratesLocalDataSourceMock: RatesLocalDataSourceProtocol!
+    private var dataManagerMock: RatesRepositoryProtocol!
+    private var model: ConverterBrainProtocol!
 
-        override func setUpWithError() throws {
-            networkManagerMock = NetworkManagerMock(mockCurrencyEntity: .currencyRatesMock)
-            ratesRemoteDataSource = RatesRemoteDataSource(networkManager: networkManagerMock)
-            ratesLocalDataSourceMock = RatesLocalDataSourceMock()
+    override func setUpWithError() throws {
+        networkManagerMock = NetworkManagerMock(currencyDataMock: .currencyRatesDataMock)
+        ratesRemoteDataSource = RatesRemoteDataSource(networkManager: networkManagerMock)
+        ratesLocalDataSourceMock = RatesLocalDataSourceMock()
 
-            dataManagerMock = DataManagerMock(remoteDataSource: ratesRemoteDataSource, localDataSourceMock: ratesLocalDataSourceMock)
-            model = ConverterBrain(repository: dataManagerMock)
-            
-            try super.setUpWithError()
-        }
+        dataManagerMock = DataManagerMock(remoteDataSource: ratesRemoteDataSource, localDataSourceMock: ratesLocalDataSourceMock)
+        model = ConverterBrain(repository: dataManagerMock)
 
-        override func tearDownWithError() throws {
-            model = nil
-            dataManagerMock = nil
-            ratesRemoteDataSource = nil
-            ratesLocalDataSourceMock = nil
-            networkManagerMock = nil
-        }
+        try super.setUpWithError()
+    }
 
-        func test_model_trackedCurrencies() throws {
-            model.updateCurrencyRates()
-            XCTAssertEqual(model.trackedCurrencies, properties.trackedCurrencies)
+    override func tearDownWithError() throws {
+        model = nil
+        dataManagerMock = nil
+        ratesRemoteDataSource = nil
+        ratesLocalDataSourceMock = nil
+        networkManagerMock = nil
+    }
 
-            model.saveCurrency(Currency(rawValue: "ILS"))
-            var trackedCurrencies = properties.trackedCurrencies
-            trackedCurrencies.append(Currency(rawValue: "ILS"))
-            XCTAssertEqual(model.trackedCurrencies, trackedCurrencies)
+    func test_model_trackedCurrencies() throws {
+        model.updateCurrencyRates()
+        XCTAssertEqual(model.trackedCurrencies, properties.trackedCurrencies)
 
-            model.deleteCurrency(Currency(rawValue: "ILS"))
-            XCTAssertEqual(model.trackedCurrencies, properties.trackedCurrencies)
-        }
+        model.saveCurrency(Currency(rawValue: "AUD"))
+        var trackedCurrencies = properties.trackedCurrencies
+        trackedCurrencies.append(Currency(rawValue: "AUD"))
+        XCTAssertEqual(model.trackedCurrencies, trackedCurrencies)
 
-        func test_model_ratesCalculations() throws {
-            model.updateCurrencyRates()
+        model.deleteCurrency(Currency(rawValue: "AUD"))
+        XCTAssertEqual(model.trackedCurrencies, properties.trackedCurrencies)
+    }
 
-            model.calculateRates(value: "1000", currency: Currency.init(rawValue: "ILS"))
-            let expectedOutputEUR = "28.14"
-            let euro = model.currentRates.first(where: {$0.currency == Currency(rawValue: "EUR") })
-            XCTAssertEqual(euro?.exchangeValueString, expectedOutputEUR)
+    func test_model_ratesCalculations_shekel() throws {
+        model.updateCurrencyRates()
+        model.calculateRates(value: "100", currency: Currency.init(rawValue: "ILS"))
 
-            let expectedOutputRUB = "2434.90"
-            let ruble = model.currentRates.first(where: { $0.currency == Currency(rawValue: "RUB") })
-            XCTAssertEqual(ruble?.exchangeValueString, expectedOutputRUB)
+        let expectedOutputILStoEUR = "28.14"
+        let euro = model.currentRates.first(where: {$0.currency == Currency(rawValue: "EUR") })!
+        XCTAssertEqual(euro.exchangeValueString, expectedOutputILStoEUR)
 
-            let expectedOutputUSD = "31.93"
-            let usdDollar = model.currentRates.first(where: { $0.currency == Currency(rawValue: "USD") })
-            XCTAssertEqual(usdDollar?.exchangeValueString, expectedOutputUSD)
-        }
+        let expectedOutputILStoRUB = "2434.90"
+        let ruble = model.currentRates.first(where: { $0.currency == Currency(rawValue: "RUB") })!
+        XCTAssertEqual(ruble.exchangeValueString, expectedOutputILStoRUB)
 
-        func testPerformanceExample() throws {
-            // This is an example of a performance test case.
-            self.measure {
-                // Put the code you want to measure the time of here.
-            }
+        let expectedOutputILStoUSD = "31.93"
+        let usdDollar = model.currentRates.first(where: { $0.currency == Currency(rawValue: "USD") })!
+        XCTAssertEqual(usdDollar.exchangeValueString, expectedOutputILStoUSD)
+    }
+
+    func test_model_ratesCalculations_usDollar() throws {
+        model.updateCurrencyRates()
+        model.calculateRates(value: "100", currency: Currency.init(rawValue: "USD"))
+
+        let expectedOutputUSDtoEUR = "88.11"
+        let euro = model.currentRates.first(where: {$0.currency == Currency(rawValue: "EUR") })!
+        XCTAssertEqual(euro.exchangeValueString, expectedOutputUSDtoEUR)
+
+        let expectedOutputUSDtoRUB = "7624.89"
+        let ruble = model.currentRates.first(where: { $0.currency == Currency(rawValue: "RUB") })!
+        XCTAssertEqual(ruble.exchangeValueString, expectedOutputUSDtoRUB)
+
+        let expectedOutputUSDtoILS = "313.15"
+        let shekel = model.currentRates.first(where: { $0.currency == Currency(rawValue: "ILS") })!
+        XCTAssertEqual(shekel.exchangeValueString, expectedOutputUSDtoILS)
+    }
+
+    func testPerformanceExample() throws {
+        // This is an example of a performance test case.
+        self.measure {
+            // Put the code you want to measure the time of here.
         }
     }
+}

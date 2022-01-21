@@ -15,8 +15,8 @@ class NetworkManagerMock: NetworkManagerProtocol {
 
     let currencyEntityMock: CurrencyEntity
 
-    init(mockCurrencyEntity: CurrencyEntity) {
-        self.currencyEntityMock = mockCurrencyEntity
+    init(currencyDataMock: CurrencyEntity) {
+        self.currencyEntityMock = currencyDataMock
     }
     
     func getRatesFrom(_ baseCurrency: Currency, completion: @escaping CurrencyRatesCompletion) {

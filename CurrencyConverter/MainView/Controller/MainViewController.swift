@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         configure()
         updateData()
+        setAccessibilityIdentifiers()
     }
 
     @objc func segmentDidChange(_ sender: UISegmentedControl) {

@@ -28,6 +28,7 @@ class CurrenciesListViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         configure()
         getSectionsFromCurrencies()
+        setAccessibilityIdentifiers()
     }
 
     private func getSectionsFromCurrencies() {

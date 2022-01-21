@@ -12,6 +12,6 @@ struct PropertiesMock {
 
     let url = URL(string: "www.example.com")
     let baseCurrency: Currency = .init(rawValue: "EUR")
-    let currencyRates = CurrencyEntity.currencyRatesMock
-    let trackedCurrencies = [Currency(rawValue: "EUR"), Currency(rawValue: "USD"), Currency(rawValue: "RUB")]
+    let currencyRates = CurrencyEntity.currencyRatesDataMock
+    let trackedCurrencies = [Currency(rawValue: "EUR"), Currency(rawValue: "USD"), Currency(rawValue: "RUB"), Currency(rawValue: "ILS")]
 }
