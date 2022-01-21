@@ -71,11 +71,4 @@ class CurrenciesListBrainTests: XCTestCase {
         XCTAssertEqual(model.sections[1].currencyRates[0], australianDollar)
         XCTAssertEqual(model.sections[1].currencyRates.count, 1)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
 }
