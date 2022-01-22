@@ -13,12 +13,9 @@ class CurrenciesListViewUITests: XCTestCase {
 
     var app: XCUIApplication!
     var addCurrencyButton: XCUIElement!
-
     var navigationBar: XCUIElement!
     var backButton: XCUIElement!
-
     var searchTextField: XCUIElement!
-
     var tableView: XCUIElement!
 
     override func setUpWithError() throws {
@@ -27,20 +24,16 @@ class CurrenciesListViewUITests: XCTestCase {
         self.app.launch()
 
         addCurrencyButton = app.buttons[accessibility.addCurrencyButton]
-
         navigationBar = app.navigationBars[accessibility.navigationBar]
         backButton = navigationBar.buttons.element(boundBy: 0)
-
         searchTextField = navigationBar.searchFields[accessibility.searchTextField]
         tableView = app.tables[accessibility.tableView]
     }
 
     override func tearDownWithError() throws {
         app = nil
-
         navigationBar = nil
         backButton = nil
-
         tableView = nil
         searchTextField = nil
     }
