@@ -22,8 +22,8 @@ class TextFieldsTests: XCTestCase {
 
     // MARK: - NoDigitsField
     func testNoDigitsField_IgnoreDigits() throws {
-        let inputWithoutDigits = "asdfg)=!"
-        let inputWithDigits = "123ADf3"
+        let inputWithoutDigits = "a"
+        let inputWithDigits = "1"
         XCTAssertTrue(mut.ignoreDigits(replacementString: inputWithoutDigits))
         XCTAssertFalse(mut.ignoreDigits(replacementString: inputWithDigits))
     }
